@@ -4,13 +4,13 @@ using MySql.Data.MySqlClient;
 
 namespace DataBaseCore;
 
-internal sealed class DataBaseHandler : IDataHandler
+internal sealed class DataBaseHandler
 {
 public static void AddUser(IUser user)
 {
     if (!IsUserInDB(user))
     {
-        RequestGenerator.INSERT(GetFormedStringForINSERT(user), "users(id, name)");
+        RequestGenerator.INSERT(GetStringForINSERT(user), "users(id, name)");
     }
 }
 
@@ -23,13 +23,13 @@ private static string GetStringForINSERT(IUser user)
     return null;
 }
 
-private static string GetStringForINSERT(Lesson lesson = null)
-{
-    if (lesson != null)
-        return $"'{lesson.info}','{lesson.pairNumber}','{lesson.dayOfWeek}','{lesson.modification}'";
+// private static string GetStringForINSERT(Lesson lesson = null)
+// {
+//     if (lesson != null)
+//         return $"'{lesson.info}','{lesson.pairNumber}','{lesson.dayOfWeek}','{lesson.modification}'";
 
-    return null;
-}
+//     return null;
+// }
 
 private static bool IsUserInDB(IUser user)
 {
@@ -45,14 +45,14 @@ file sealed class RequestGenerator
 private static string ConnectionSTR = "server=localhost;user=root;database=lol;password=lfybk2000";
 private static MySqlConnection conn = new MySqlConnection(ConnectionSTR);
 
-static void INSERT(string value, string TABLE_INFO)
+public static void INSERT(string value, string TABLE_INFO)
 {
     conn.Open();
         new MySqlCommand($"INSERT INTO {TABLE_INFO} VALUES ({value})", conn).ExecuteScalar();
     conn.Close();
 }
 
-static List<string> SELECT(string value, string table, string WHERE = "")
+public static List<string> SELECT(string value, string table, string WHERE = "")
 {
     List<string> values = new List<string>();
 

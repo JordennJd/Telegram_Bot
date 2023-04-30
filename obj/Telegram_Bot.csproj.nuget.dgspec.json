@@ -39,6 +39,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[8.0.33, )"
+            },
             "Telegram.Bot": {
               "target": "Package",
               "version": "[18.0.0, )"

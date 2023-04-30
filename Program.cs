@@ -34,7 +34,7 @@ public class Program
     public static async Task Start(object sender, ForFunctionEventArgs e){
 
         await Output.RequestMessageSending(e.update.Message.Chat, "Hellow world!");
-        DataBaseCore.DataBaseHandler.AddUser(e.update.Message.User.Id,e.update.Message.User.FirstName);
+        DataBaseCore.DataBaseHandler.AddUser(e.update.Message.User);
     }
     public static async Task Request(object sender, ForFunctionEventArgs e){
 
