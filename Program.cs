@@ -1,5 +1,6 @@
 ﻿//using Hackathon_Gazprom.DataBaseCore;
 using Bot.MessageExchange;
+using DataBaseCore;
 
 public class Program
 {
@@ -26,7 +27,6 @@ public class Program
     public static void Update(IUpdate update){
         //ТУТ ВХОД ПРОГРАММЫ
 
-
         messageExchangeManager.PushButton(update); //Функция которая вызовет функции в зависимости от написанного текста
     }
 
@@ -34,6 +34,7 @@ public class Program
     public static async Task Start(object sender, ForFunctionEventArgs e){
 
         await Output.RequestMessageSending(e.update.Message.Chat, "Hellow world!");
+        DataBaseCore.DataBaseHandler.AddUser(e.update.Message.User.Id,e.update.Message.User.FirstName);
     }
     public static async Task Request(object sender, ForFunctionEventArgs e){
 
