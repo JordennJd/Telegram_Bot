@@ -134,8 +134,6 @@ namespace Bot.MessageExchange
             _outputHandler = new TelegramOutputHandler();
             botClient = new TelegramBotClient(telegramBotToken);
             botClient.StartReceiving(telegrameUpdate, error);
-            
-              
         }
         private async Task telegrameUpdate(ITelegramBotClient botClient, Telegram.Bot.Types.Update update, CancellationToken token){
             if(update.Message!= null && update.Message.Text!= null)
