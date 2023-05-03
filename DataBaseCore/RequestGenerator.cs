@@ -1,6 +1,7 @@
 using System;
 using Bot.MessageExchange;
 using MySql.Data.MySqlClient;
+using TimeTableCore;
 
 namespace DataBaseCore;
 
@@ -23,13 +24,17 @@ private static string GetStringForINSERT(IUser user)
     return null;
 }
 
-// private static string GetStringForINSERT(Lesson lesson = null)
-// {
-//     if (lesson != null)
-//         return $"'{lesson.info}','{lesson.pairNumber}','{lesson.dayOfWeek}','{lesson.modification}'";
+public static void AddLesson(ILesson lesson)
+{
+    RequestGenerator.INSERT(GetStringForINSERT(lesson),"TimeTable(Info,DayOfWeek,PairNumber,Modification)");
+}
+private static string GetStringForINSERT(ILesson lesson = null)
+{
+    if (lesson != null)
+        return $"'{lesson.Info}','{lesson.PairNumber}','{lesson.DayOfWeek}','{lesson.Modification}'";
 
-//     return null;
-// }
+    return null;
+}
 
 private static bool IsUserInDB(IUser user)
 {

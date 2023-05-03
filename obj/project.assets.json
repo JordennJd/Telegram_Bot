@@ -1784,26 +1784,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\alexb\\.nuget\\packages\\": {}
+    "/Users/danilalatyrev/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Telegram_Bot\\Telegram_Bot.csproj",
+      "projectUniqueName": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
       "projectName": "Telegram_Bot",
-      "projectPath": "D:\\Telegram_Bot\\Telegram_Bot.csproj",
-      "packagesPath": "C:\\Users\\alexb\\.nuget\\packages\\",
-      "outputPath": "D:\\Telegram_Bot\\obj\\",
+      "projectPath": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
+      "packagesPath": "/Users/danilalatyrev/.nuget/packages/",
+      "outputPath": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\alexb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/danilalatyrev/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1847,7 +1846,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }
