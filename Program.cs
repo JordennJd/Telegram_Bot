@@ -49,11 +49,11 @@ public class Program
         string Info = await Input.RequestMessageReceiving(e.update.Message.Chat);
 
         await Output.RequestMessageSending(e.update.Message.Chat,
-             "Напишите номер дня недели(1-7)" );
+             "Напишите номер дня недели(1-7)",new string[][] {new string[]{"Понедельник","Вторник","Среда","Четверг","Пятница","Суббота"}} );
         string DayOfWeek = await Input.RequestMessageReceiving(e.update.Message.Chat);
         //Функция проверки дня недели
         await Output.RequestMessageSending(e.update.Message.Chat,
-             "Напишите номер пары(1-7)" );
+             "Напишите номер пары(1-7)",new string[][] {new string[]{"1","2","3","4","5","6","7"} });
         string PairNumber = await Input.RequestMessageReceiving(e.update.Message.Chat);
         //Функция проверки номера пары
         await Output.RequestMessageSending(e.update.Message.Chat,

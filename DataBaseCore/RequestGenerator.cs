@@ -31,7 +31,7 @@ public static void AddLesson(ILesson lesson)
 private static string GetStringForINSERT(ILesson lesson = null)
 {
     if (lesson != null)
-        return $"'{lesson.Info}','{lesson.PairNumber}','{lesson.DayOfWeek}','{lesson.Modification}'";
+        return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.PairNumber}','{lesson.Modification}'";
 
     return null;
 }
