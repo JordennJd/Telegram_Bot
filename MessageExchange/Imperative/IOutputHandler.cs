@@ -12,7 +12,7 @@ namespace Bot.MessageExchange
         /// IEnumerable<IEnumerable<string>> ButtonsString - клавиатура для пользователя
         /// Чтобы удалить клавиатуру задайте в параметр функции ButtonsButton: null
         /// </summary> 
-        public Task RequestMessageSending(IChat chat, string messageName, IEnumerable<IEnumerable<string>> ButtonsString = null);
+        public Task RequestMessageSending(IChat chat, string messageName, string UserRole, IEnumerable<IEnumerable<string>> ButtonsString = null);
 
         /// <summary>
         /// Отправка сообщения пользователью
@@ -21,7 +21,7 @@ namespace Bot.MessageExchange
         /// IEnumerable<IEnumerable<Button>> ButtonsButton - клавиатура для пользователя
         /// Чтобы удалить клавиатуру задайте в параметр функции ButtonsButton: null
         /// </summary> 
-        public Task RequestMessageSending(IChat chat, string messageName, IEnumerable<IEnumerable<Button>> ButtonsButton);
+        public Task RequestMessageSending(IChat chat, string messageName,string UserRole, IEnumerable<IEnumerable<Button>> ButtonsButton);
         
     }
 }

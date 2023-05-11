@@ -1789,11 +1789,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
+      "projectUniqueName": "/Users/danilalatyrev/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
       "projectName": "Telegram_Bot",
-      "projectPath": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
+      "projectPath": "/Users/danilalatyrev/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
       "packagesPath": "/Users/danilalatyrev/.nuget/packages/",
-      "outputPath": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/obj/",
+      "outputPath": "/Users/danilalatyrev/ForProjects/Telegram_Bot/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/danilalatyrev/.nuget/NuGet/NuGet.Config"

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using Telegram.Bot;
-
+using DataBaseCore;
 namespace Bot.MessageExchange
 {
     
@@ -64,6 +64,7 @@ namespace Bot.MessageExchange
                 Id=user.Id;
                 FirstName = user.FirstName;
             }
+
         }
         private class Chat:IChat
         {
@@ -154,7 +155,7 @@ namespace Bot.MessageExchange
         public void PushButton(IUpdate update){
             foreach(Button[] buts in update.Message.Chat.Buttons){
                 foreach(Button but in buts){
-                if (but.Text == update.Message.Text)
+                if (but.Text == update.Message.Text && (but.Role=="public" || DataBaseCore.DataBaseHandler.GetUserRole(update.Message.User) == "admin"))
                     but.PushButton(new ForFunctionEventArgs(update));
                 }
             }

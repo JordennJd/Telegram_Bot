@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XNiu48v/aA+AG8Bx2Cy0W8Q078UbNoboLQUFDDe9cLyL71H7TF13dc0zIBhHhJjCAeweOnU4Js0SWGOjchmu+w==",
+  "dgSpecHash": "O1Iw7dh3S0A68cNbhfqSBkc+a50fSglUC/plwj5WbQw0RUzi4c9N/Y1Q8o2kkBezfgaXgPPVhd8bRqhwneUMDg==",
   "success": true,
-  "projectFilePath": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
+  "projectFilePath": "/Users/danilalatyrev/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
   "expectedPackageFiles": [
     "/Users/danilalatyrev/.nuget/packages/google.protobuf/3.21.9/google.protobuf.3.21.9.nupkg.sha512",
     "/Users/danilalatyrev/.nuget/packages/k4os.compression.lz4/1.3.5/k4os.compression.lz4.1.3.5.nupkg.sha512",
