@@ -1,6 +1,11 @@
 ﻿using Telegram.Bot;
 
-namespace Bot.MessageExchange
+//Зависимости архитектуры
+using Bot.MessageExchange.Imperative;
+using Bot.Domain.Interfaces;
+
+
+namespace Bot.MessageExchange.TelegramMesExc
 {
     public partial class TelegramMessageExchangeManager 
     {

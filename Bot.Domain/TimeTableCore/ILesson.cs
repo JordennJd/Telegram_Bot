@@ -1,4 +1,4 @@
-namespace TimeTableCore;
+namespace Bot.Domain.TimeTableCore;
     public interface ILesson{
         public string Info{get ;}
         public string DayOfWeek{get;}

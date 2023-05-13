@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 using Telegram.Bot;
 using Telegram.Bot.Types.ReplyMarkups;
 
-namespace Bot.MessageExchange
+//Зависимости архитектуры
+using Bot.MessageExchange.Imperative;
+using Bot.Domain.Interfaces;
+using Bot.Domain.Entities;
+
+namespace Bot.MessageExchange.TelegramMesExc
 {
     public partial class TelegramMessageExchangeManager
     {

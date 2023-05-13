@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Bot.MessageExchange
+namespace Bot.Domain.Interfaces
 {
-    public interface IUpdate
+   public interface IUpdate
     {
         public IMessage Message{get;} 
     }
@@ -19,10 +19,6 @@ namespace Bot.MessageExchange
     public interface IChat{
         public long Id{get;}
         public string Title{get;}
-        public Button[][] Buttons{get; protected set;}
-        public void ChangeButtons(Button[][] buttons){
-            Buttons = buttons;
-        }
 
     }
     public interface IUser{
@@ -31,7 +27,6 @@ namespace Bot.MessageExchange
         
         public void ChangeName(string FirstName){
             this.FirstName = FirstName;
-           
         }
 
     }

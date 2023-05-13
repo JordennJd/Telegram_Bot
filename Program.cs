@@ -25,11 +25,7 @@ public class Program
         
         Console.ReadLine();
     }
-    public static void Update(IUpdate update){
-        //ТУТ ВХОД ПРОГРАММЫ
-
-        messageExchangeManager.PushButton(update); //Функция которая вызовет функции в зависимости от написанного текста
-    }
+   
 
     //Тут функции которые будут вызываться при нажатии кнопки
     public static async Task Start(object sender, ForFunctionEventArgs e){

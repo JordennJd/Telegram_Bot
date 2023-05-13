@@ -1,4 +1,6 @@
-﻿namespace Bot.MessageExchange
+﻿using Bot.Domain.Interfaces;
+
+namespace Bot.MessageExchange.Imperative
 {
     /// <summary>
     /// Реализует обработку ввода сообщения пользователем.

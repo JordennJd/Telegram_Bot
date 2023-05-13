@@ -1,11 +1,14 @@
 using System;
-using Bot.MessageExchange;
+using Bot.MessageExchange.Imperative;
 using MySql.Data.MySqlClient;
-using TimeTableCore;
 
-namespace DataBaseCore;
+//Архитектурные зависимости
+using Bot.Domain.TimeTableCore;
+using Bot.Domain.Interfaces;
 
-internal sealed class DataBaseHandler
+namespace Bot.Infrastructure.DataBaseCore{
+
+static class DataBaseHandler
 {
 public static void AddUser(IUser user)
 {
@@ -76,4 +79,4 @@ public static List<string> SELECT(string value, string table, string WHERE = "")
 }
 
 }
-
+}

@@ -1,4 +1,4 @@
-namespace TimeTableCore;
+namespace Bot.Domain.TimeTableCore;
 class Lesson : ILesson
 {
         public string Info{get ;}

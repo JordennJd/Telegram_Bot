@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 using System.Xml;
 using Telegram.Bot;
 
-namespace Bot.MessageExchange
+//Зависимости архитектуры
+using Bot.MessageExchange.Imperative;
+using Bot.Domain.Interfaces;
+
+namespace Bot.MessageExchange.TelegramMesExc
 {
-    
-    
-    
     public partial class TelegramMessageExchangeManager : IMessageExchangeManager
     {
         private static List<Chat> chats;
-        private static Button[][] mainMenu;
         private class Update : IUpdate
         {
             private Message _message;
@@ -70,26 +70,21 @@ namespace Bot.MessageExchange
             public AutoResetEvent GetStringEvent{get;} //Заглушка потока для функции TelegramRequestString
             public long Id{get;}
             public string Title{get;}
-
-            public Button[][] Buttons{get; set;}
             public string BuferString{get; set;}
-            public Chat(long id, string title, Button[][] buttons){
+            public Chat(long id, string title){
                 Id = id;
                 Title = title;
-                Buttons = buttons;
                 GetStringEvent = new AutoResetEvent(false);
             }
             public Chat(Telegram.Bot.Types.Chat chat){
                 Id=chat.Id;
                 Title = chat.Title;
-                Buttons = mainMenu;
                 GetStringEvent = new AutoResetEvent(false);
             }
 
             public Chat(IChat chat){
                 Id=chat.Id;
                 Title=chat.Title;
-                Buttons = chat.Buttons;
                 GetStringEvent = new AutoResetEvent(false);
             }
         }
@@ -127,9 +122,8 @@ namespace Bot.MessageExchange
         /// <summary>
         /// Подключается к боту в телеграмме.
         /// </summary>
-        public void Initialize(Button[][] MeinMenu)
+        public void Initialize()
         {
-            mainMenu = MeinMenu;
             _inputHandler = new TelegramInputHandler();
             _outputHandler = new TelegramOutputHandler();
             botClient = new TelegramBotClient(telegramBotToken);
@@ -151,14 +145,7 @@ namespace Bot.MessageExchange
             
         }
 
-        public void PushButton(IUpdate update){
-            foreach(Button[] buts in update.Message.Chat.Buttons){
-                foreach(Button but in buts){
-                if (but.Text == update.Message.Text)
-                    but.PushButton(new ForFunctionEventArgs(update));
-                }
-            }
-        }
+       
 
         public IInputHandler GetInputHandler()
         {

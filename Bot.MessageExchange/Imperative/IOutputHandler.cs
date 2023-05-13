@@ -1,4 +1,7 @@
-namespace Bot.MessageExchange
+using Bot.Domain.Interfaces;
+using Bot.Domain.Entities;
+
+namespace Bot.MessageExchange.Imperative
 {
     /// <summary>
     /// Реализует обработку вывода сообщения пользователем.
