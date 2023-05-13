@@ -10,7 +10,7 @@ namespace Bot.Infrastructure.DataBaseCore{
 
 static class DataBaseHandler
 {
-public static void AddUser(IUser user)
+public static void AddUser(User user)
 {
     if (!IsUserInDB(user))
     {
@@ -19,7 +19,7 @@ public static void AddUser(IUser user)
 }
 
 //Нужно реализовать изменение информации о пользователях в БД
-private static string GetStringForINSERT(IUser user)
+private static string GetStringForINSERT(User user)
 {
     if (user != null)
         return $"{user.Id},'{user.FirstName}'";
@@ -39,7 +39,7 @@ private static string GetStringForINSERT(ILesson lesson = null)
     return null;
 }
 
-private static bool IsUserInDB(IUser user)
+private static bool IsUserInDB(User user)
 {
     return RequestGenerator.SELECT("id","users").Contains(user.Id.ToString());
 }

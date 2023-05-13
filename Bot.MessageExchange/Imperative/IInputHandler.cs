@@ -7,6 +7,6 @@ namespace Bot.MessageExchange.Imperative
     /// </summary>
     public interface IInputHandler
     {
-        public Task<string> RequestMessageReceiving(IChat chat);
+        public Task<string> RequestMessageReceiving(Chat chat);
     }
 }

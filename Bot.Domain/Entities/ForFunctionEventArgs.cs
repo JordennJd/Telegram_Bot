@@ -8,10 +8,10 @@ namespace Bot.Domain.Entities
 {
     public class ForFunctionEventArgs : EventArgs
     {
-        public IUpdate update { get;}
+        public CoreUpdate update { get;}
 
     
-        public ForFunctionEventArgs(IUpdate update)
+        public ForFunctionEventArgs(CoreUpdate update)
         {
             this.update=update;
         }

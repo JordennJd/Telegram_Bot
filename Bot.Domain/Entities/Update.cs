@@ -8,51 +8,78 @@ using Bot.Domain.Interfaces;
 
 namespace Bot.Domain.Entities
 {
-    class Update : IUpdate
+    public abstract class Update : IUpdate
     {
-        private Message _message;
-        public IMessage Message{get{return _message;}}
+        public virtual Message Message { get; }
+    }
 
-        public Update(Message message){
-            _message = message;
+    public class CoreUpdate : Update
+    {
+        public override CoreMessage Message { get; }
+
+        public CoreUpdate(CoreMessage message)
+        {
+            Message = message;
+
+        }
+        public CoreUpdate(IUpdate update, IEnumerable<IEnumerable<Button>> buttons)
+        {
+            Message = new CoreMessage(update.Message, buttons);
         }
     }
-    class Message: IMessage
+    public class CoreMessage : Message
     {
-        private User _user;
-        private Chat _chat;
-        public string Text{get;}  
+        public override string Text { get; }
 
-        public IUser User{get{return _user;}}
-        public IChat Chat{get{return _chat;}}
-        
-        public Message(User user, Chat chat, string text){
-            _user = user;
-            _chat = chat;
+        public override CoreUser User { get; }
+        public override CoreChat Chat { get; }
+
+        public CoreMessage(CoreUser user, CoreChat chat, string text)
+        {
+            User = user;
+            Chat = chat;
             Text = text;
         }
-        
+        public CoreMessage(Message message, IEnumerable<IEnumerable<Button>> buttons)
+        {
+            User = new CoreUser(message.User);
+            Chat = new CoreChat(message.Chat, buttons);
+            Text = message.Text;
+        }
+
     }
-    class User : IUser
+    public class CoreUser : User
     {
-        public long Id{get;}
-        public string FirstName{get; set;}
-        public User(long id, string firstName){
+        public override long Id { get; }
+        public override string FirstName { get; set; }
+        public CoreUser(long id, string firstName)
+        {
             Id = id;
             FirstName = firstName;
         }
-        
+        public CoreUser(User user)
+        {
+            Id = user.Id;
+            FirstName = user.FirstName;
+        }
     }
-    class Chat:IChat
+    public class CoreChat : Chat
     {
-        public long Id{get;}
-        public string Title{get;}
-        public IEnumerable<IEnumerable<Button>> Buttons{get;}
-        public Chat(long id, string title, IEnumerable<IEnumerable<Button>> buttons){
+        public override long Id { get; }
+        public override string Title { get; }
+        public IEnumerable<IEnumerable<Button>> Buttons;
+        public CoreChat(long id, string title, IEnumerable<IEnumerable<Button>> buttons)
+        {
             Id = id;
             Title = title;
-            Buttons =buttons;
+            Buttons = buttons;
         }
-        
+        public CoreChat(Chat chat, IEnumerable<IEnumerable<Button>> buttons)
+        {
+            Id = chat.Id;
+            Title = chat.Title;
+            Buttons = buttons;
+        }
+
     }
 }

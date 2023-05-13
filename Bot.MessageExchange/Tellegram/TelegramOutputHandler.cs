@@ -17,7 +17,7 @@ namespace Bot.MessageExchange.TelegramMesExc
     {
         private class TelegramOutputHandler: IOutputHandler
         {
-            public async Task RequestMessageSending(IChat chat, string str, IEnumerable<IEnumerable<string>> buttons = null)
+            public async Task RequestMessageSending(Chat chat, string str, IEnumerable<IEnumerable<string>> buttons = null)
             {
                 if(buttons == null)
                     await botClient.SendTextMessageAsync(chat.Id,str);
@@ -33,7 +33,7 @@ namespace Bot.MessageExchange.TelegramMesExc
                     await botClient.SendTextMessageAsync(chat.Id,str, replyMarkup: replyKeyboardMarkup);
                 } 
             }
-            public async Task RequestMessageSending(IChat chat, string str, IEnumerable<IEnumerable<Button>> buttons)
+            public async Task RequestMessageSending(Chat chat, string str, IEnumerable<IEnumerable<Button>> buttons)
             {
                 if(buttons == null)
                     await botClient.SendTextMessageAsync(chat.Id,str, replyMarkup: new ReplyKeyboardRemove());

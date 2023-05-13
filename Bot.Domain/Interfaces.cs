@@ -3,32 +3,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Bot.Domain.Interfaces
 {
-   public interface IUpdate
+    public interface IUpdate
     {
-        public IMessage Message{get;} 
+        public abstract Message Message { get; }
     }
-    public interface IMessage{
-        public IUser User{get;}
+    public abstract class Message
+    {
+        public virtual User User { get; }
 
-        public IChat Chat{get;}
-        public string Text{get;}
-
+        public virtual Chat Chat { get; }
+        public virtual string Text { get; }
     }
-    public interface IChat{
-        public long Id{get;}
-        public string Title{get;}
 
+    public abstract class Chat
+    {
+        public virtual long Id { get; }
+        public virtual string Title { get; }
     }
-    public interface IUser{
-        public long Id{get;}
-        public string FirstName{get; protected set;}
-        
-        public void ChangeName(string FirstName){
+
+    public abstract class User
+    {
+        public virtual long Id { get; }
+        public virtual string FirstName { get; set; }
+
+        public virtual void ChangeName(string FirstName)
+        {
             this.FirstName = FirstName;
         }
-
     }
-    
+
 }
