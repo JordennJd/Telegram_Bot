@@ -18,11 +18,10 @@ internal sealed partial class DataBaseHandler
     }
     public static string GetUserRole(User user)
     {
-        return RequestGenerator.SELECT("role", "users",$"WHERE id = '{user.Id}'")[0][0];
-
+        return RequestGenerator.SELECT("role", "users", $"WHERE id = '{user.Id}'")[0][0];
     }
 
-    //Нужно реализовать изменение информации о пользователях в БД
+    //TODO Нужно реализовать изменение информации о пользователях в БД
     private static string GetStringForINSERT(User user)
     {
         if (user != null)

@@ -12,9 +12,12 @@ namespace Bot.MessageExchange.TelegramMesExc
         private class TelegramInputHandler : IInputHandler
         {
             private List<TelegramChat> awaitChats;
-            public TelegramInputHandler(){
+
+            public TelegramInputHandler()
+            {
                 awaitChats = new List<TelegramChat>();
             }
+
             public async Task<string> RequestMessageReceiving(Chat chat)
             {   
                 TelegramChat awaitChat = new TelegramChat(chat);
@@ -23,7 +26,8 @@ namespace Bot.MessageExchange.TelegramMesExc
                 return awaitChat.BuferString;
             }
 
-            public bool FindChatAndSetEventWait(TelegramChat chat, string Text){  
+            public bool FindChatAndSetEventWait(TelegramChat chat, string Text)
+            {  
                 int Index = awaitChats.FindIndex(0, awaitChats.Count, x=> x.Id ==chat.Id);
 
                 if(Index!=-1)

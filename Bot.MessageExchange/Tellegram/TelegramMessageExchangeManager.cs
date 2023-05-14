@@ -20,6 +20,7 @@ public partial class TelegramMessageExchangeManager : IMessageExchangeManager
     {
         public virtual Message Message { get; }
     }
+
     private class TelegramUpdate : Update
     { 
         public override TelegramMessage Message{get; }
@@ -31,11 +32,11 @@ public partial class TelegramMessageExchangeManager : IMessageExchangeManager
     {
             
         public override string Text{get;}  
-
         public override TelegramUser User{ get; }
         public override TelegramChat Chat { get; }
             
-        public TelegramMessage(Telegram.Bot.Types.Message message){
+        public TelegramMessage(Telegram.Bot.Types.Message message)
+        {
 
             Chat = new TelegramChat(message.Chat);
             User = new TelegramUser(message.From);
@@ -61,13 +62,15 @@ public partial class TelegramMessageExchangeManager : IMessageExchangeManager
         public override long Id{get;}
         public override string Title{get;}
     
-        public TelegramChat(Telegram.Bot.Types.Chat chat){
+        public TelegramChat(Telegram.Bot.Types.Chat chat)
+        {
             Id=chat.Id;
             Title = chat.Title;
             GetStringEvent = new AutoResetEvent(false);
         }
 
-        public TelegramChat(Chat chat){
+        public TelegramChat(Chat chat)
+        {
             Id=chat.Id;
             Title=chat.Title;
             GetStringEvent = new AutoResetEvent(false);
@@ -116,32 +119,30 @@ public partial class TelegramMessageExchangeManager : IMessageExchangeManager
         botClient = new TelegramBotClient(telegramBotToken);
         botClient.StartReceiving(telegrameUpdate, error);
     }
-    private async Task telegrameUpdate(ITelegramBotClient botClient, Telegram.Bot.Types.Update update, CancellationToken token){
+
+    private async Task telegrameUpdate(ITelegramBotClient botClient, Telegram.Bot.Types.Update update, CancellationToken token)
+    {
         if(update.Message!= null && update.Message.Text!= null)
             if(_inputHandler.FindChatAndSetEventWait(new TelegramChat(update.Message.Chat), update.Message.Text))
                 return;
-
-                    
+     
         UpdateEvent?.Invoke(new TelegramUpdate(update)); 
-         
-    }
-    private Task error(ITelegramBotClient arg1, Exception arg2, CancellationToken arg3) //Обработка каких то ошибок
-    {
-        Console.WriteLine(arg2.ToString());
-        throw new NotImplementedException();
-            
     }
 
-       
 
     public IInputHandler GetInputHandler()
     {
         return _inputHandler;
     }
-
     public IOutputHandler GetOutputHandler()
     {
         return _outputHandler;
+    }
+
+    private Task error(ITelegramBotClient arg1, Exception arg2, CancellationToken arg3) //Обработка каких то ошибок
+    {
+        Console.WriteLine(arg2.ToString());
+        throw new NotImplementedException();
     }
 }
 

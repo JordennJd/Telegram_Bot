@@ -80,7 +80,7 @@ static class BotUpdateController
         //Функция проверки дня недели
         await Output.RequestMessageSending(e.update.Message.Chat,
             "Напишите номер пары(1-7)", 
-            new string[][] { new string[] { "1", "2", "3", "4", "5", "6", "7" } });
+            new string[][] { new string[] { "1", "2", "3", "4", "5", "6" } });
         string PairNumber = await Input.RequestMessageReceiving(e.update.Message.Chat);
         
         //Функция проверки номера пары

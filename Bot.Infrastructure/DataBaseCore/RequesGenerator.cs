@@ -35,16 +35,15 @@ public sealed class RequestGenerator
         private static List<string[]> ReaderHandler(MySqlDataReader reader)
         {
             List<string[]> values = new List<string[]>();
-            if (reader.HasRows)
-                while (reader.Read())
+            while (reader.Read())
+            {
+                string[] pair = new string[reader.FieldCount];
+                for (int i = 0; i < reader.FieldCount; i++)
                 {
-                    string[] pair = new string[reader.FieldCount];
-                    for (int i = 0; i < reader.FieldCount; i++)
-                    {
-                        pair[i] = reader[i].ToString();
-                    }
-                    values.Add(pair);
+                    pair[i] = reader[i].ToString();
                 }
+                values.Add(pair);
+            }
             return values;
         }
 
