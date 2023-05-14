@@ -22,7 +22,7 @@ namespace Bot.Domain.Entities
             Message = message;
 
         }
-        public CoreUpdate(IUpdate update, IEnumerable<IEnumerable<Button>> buttons)
+        public CoreUpdate(IUpdate update, Buttons buttons)
         {
             Message = new CoreMessage(update.Message, buttons);
         }
@@ -40,7 +40,7 @@ namespace Bot.Domain.Entities
             Chat = chat;
             Text = text;
         }
-        public CoreMessage(Message message, IEnumerable<IEnumerable<Button>> buttons)
+        public CoreMessage(Message message, Buttons buttons)
         {
             User = new CoreUser(message.User);
             Chat = new CoreChat(message.Chat, buttons);
@@ -67,18 +67,62 @@ namespace Bot.Domain.Entities
     {
         public override long Id { get; }
         public override string Title { get; }
-        public IEnumerable<IEnumerable<Button>> Buttons;
-        public CoreChat(long id, string title, IEnumerable<IEnumerable<Button>> buttons)
+        public Buttons Buttons;
+
+        public string Directory {get;}
+        public CoreChat(long id, string title, Buttons buttons)
         {
             Id = id;
             Title = title;
             Buttons = buttons;
+            Directory ="";
+            foreach(IEnumerable<Button> rowButtons in Buttons){
+                foreach(Button button in rowButtons){
+                    Directory+= $"{button.Text}&&{button.functionForPushButton.Method.Name}||";
+                }
+                Directory+="||";
+            }
         }
-        public CoreChat(Chat chat, IEnumerable<IEnumerable<Button>> buttons)
+        public CoreChat(Chat chat, Buttons buttons)
         {
             Id = chat.Id;
             Title = chat.Title;
             Buttons = buttons;
+            Directory ="";
+            foreach(IEnumerable<Button> rowButtons in Buttons){
+                foreach(Button button in rowButtons){
+                    Directory+= $"{button.Text}&{button.functionForPushButton.Method.Name}|";
+                }
+                Directory+="||";
+            }
+        }
+        public CoreChat(Chat chat, string directory , Buttons functions){
+            Id = chat.Id;
+            Title = chat.Title;
+            Directory=directory;
+            ChangeButtons(directory, functions);
+        }
+        public bool ChangeButtons(string directory, Buttons functions){
+            Buttons buttons = new Buttons(); 
+            string[] rowsStrButtons = directory.Split("||");
+
+            foreach(string rowStrButtons in rowsStrButtons){
+
+                List<Button> rowButtons = new List<Button>();
+                string[] strButtons = rowStrButtons.Split("|");
+
+                foreach(string strButton in strButtons){
+                    string [] strButtonArgs = strButton.Split("&");
+                    
+                    Button button = functions.FindButtonForFunction(strButtonArgs[1]);
+                    if(button!=null)
+                        rowButtons.Add(new Button(strButtonArgs[0], button.functionForPushButton));
+                    else return false;
+                }
+                buttons.Add(rowButtons);
+            }
+            Buttons = buttons;
+            return true;
         }
 
     }
