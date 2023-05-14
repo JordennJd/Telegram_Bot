@@ -1,26 +1,44 @@
 ﻿<Properties StartupConfiguration="{F6127389-34A1-4EEB-85E0-183CC9AAE07D}|Default">
-  <MonoDevelop.Ide.ItemProperties.Telegram__Bot PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="TimeTableCore/TimeTableHandler.cs">
+  <MonoDevelop.Ide.ItemProperties.Telegram__Bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="../../Projects/TestAbs/TestAbs/Interfaces.cs">
     <Files>
       <File FileName="Program.cs" Line="1" Column="1" />
-      <File FileName="TimeTableCore/TimeTableHandler.cs" Line="20" Column="1" />
-      <File FileName="DataBaseCore/RequestGenerator.cs" Line="45" Column="67" />
+      <File FileName="Bot.MessageExchange/Tellegram/TelegramInputHandler.cs" />
+      <File FileName="Bot.Infrastructure/DataBaseCore/RequestGenerator.cs" />
+      <File FileName="Bot.Domain/Entities/Button.cs" Line="1" Column="1" />
+      <File FileName="Bot.Domain/Entities/Update.cs" Line="48" Column="10" />
+      <File FileName="Bot.Domain/TimeTableCore/ILesson.cs" />
+      <File FileName="Bot.Domain/Entities/ForFunctionEventArgs.cs" Line="1" Column="1" />
+      <File FileName="Bot.Controllers/BotUpdateController.cs" />
+      <File FileName="Bot.MessageExchange/Imperative/IMessageExchangeManager.cs" />
+      <File FileName="Bot.Domain/Interfaces.cs" Line="10" Column="6" />
+      <File FileName="Bot.MessageExchange/Imperative/IOutputHandler.cs" />
+      <File FileName="Bot.MessageExchange/Imperative/IInputHandler.cs" />
+      <File FileName="Bot.MessageExchange/Tellegram/TelegramMessageExchangeManager.cs" />
+      <File FileName="../../Projects/TestAbs/TestAbs/Interfaces.cs" Line="1" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Telegram_Bot" expanded="True">
             <Node name="Telegram_Bot" expanded="True">
-              <Node name="DataBaseCore" expanded="True" />
-              <Node name="MessageExchange" expanded="True">
-                <Node name="Imperative" expanded="True" />
+              <Node name="Bot.Controllers" expanded="True" />
+              <Node name="Bot.Domain" expanded="True">
+                <Node name="Entities" expanded="True">
+                  <Node name="ForFunctionEventArgs.cs" selected="True" />
+                </Node>
               </Node>
-              <Node name="TimeTableCore" expanded="True">
-                <Node name="TimeTableHandler.cs" selected="True" />
+              <Node name="Bot.Infrastructure" expanded="True">
+                <Node name="DataBaseCore" expanded="True" />
+              </Node>
+              <Node name="Bot.MessageExchange" expanded="True">
+                <Node name="Imperative" expanded="True" />
+                <Node name="Tellegram" expanded="True" />
               </Node>
             </Node>
           </Node>
@@ -28,6 +46,5 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

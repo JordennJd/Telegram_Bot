@@ -1,4 +1,7 @@
-namespace Bot.MessageExchange
+using Bot.Domain.Interfaces;
+using Bot.Domain.Entities;
+
+namespace Bot.MessageExchange.Imperative
 {
     /// <summary>
     /// Реализует обработку вывода сообщения пользователем.
@@ -12,7 +15,7 @@ namespace Bot.MessageExchange
         /// IEnumerable<IEnumerable<string>> ButtonsString - клавиатура для пользователя
         /// Чтобы удалить клавиатуру задайте в параметр функции ButtonsButton: null
         /// </summary> 
-        public Task RequestMessageSending(IChat chat, string messageName, string UserRole, IEnumerable<IEnumerable<string>> ButtonsString = null);
+        public Task RequestMessageSending(Chat chat, string messageName, IEnumerable<IEnumerable<string>> ButtonsString = null);
 
         /// <summary>
         /// Отправка сообщения пользователью
@@ -21,7 +24,7 @@ namespace Bot.MessageExchange
         /// IEnumerable<IEnumerable<Button>> ButtonsButton - клавиатура для пользователя
         /// Чтобы удалить клавиатуру задайте в параметр функции ButtonsButton: null
         /// </summary> 
-        public Task RequestMessageSending(IChat chat, string messageName,string UserRole, IEnumerable<IEnumerable<Button>> ButtonsButton);
+        public Task RequestMessageSending(Chat chat, string messageName, IEnumerable<IEnumerable<Button>> ButtonsButton);
         
     }
 }
