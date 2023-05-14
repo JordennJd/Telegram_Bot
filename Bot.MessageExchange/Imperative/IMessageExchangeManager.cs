@@ -2,9 +2,6 @@
 
 namespace Bot.MessageExchange.Imperative
 {
-    
-
-
     /// <summary>
     /// Инициализирует реализации отправки и получение сообщений.
     /// </summary>    

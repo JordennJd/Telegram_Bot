@@ -23,18 +23,17 @@ namespace Bot.MessageExchange.TelegramMesExc
                 return awaitChat.BuferString;
             }
 
-             
             public bool FindChatAndSetEventWait(TelegramChat chat, string Text){  
-                int i = awaitChats.FindIndex(0, awaitChats.Count, x=> x.Id ==chat.Id);
-                if(i!=-1){
-                    awaitChats[i].BuferString=Text;
-                    awaitChats[i].GetStringEvent.Set();
-                    awaitChats.RemoveAt(i);
+                int Index = awaitChats.FindIndex(0, awaitChats.Count, x=> x.Id ==chat.Id);
+
+                if(Index!=-1)
+                {
+                    awaitChats[Index].BuferString=Text;
+                    awaitChats[Index].GetStringEvent.Set();
+                    awaitChats.RemoveAt(Index);
                     return true;
                 }
-                else{
-                    return false;
-                }
+                return false;
             }
 
         

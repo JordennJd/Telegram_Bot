@@ -12,4 +12,14 @@
     <PackageReference Include="MySql.Data" Version="8.0.33" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Bot.Domain\TimeTableCore\ILesson.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Bot.Infrastructure\TimeTableCore\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Bot.Infrastructure\TimeTableCore\" />
+  </ItemGroup>
 </Project>

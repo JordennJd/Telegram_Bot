@@ -1,9 +1,8 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
 
-namespace DataBaseCore
-{
-    public sealed class RequestGenerator
+namespace Bot.Infrastructure.DataBaseCore;
+public sealed class RequestGenerator
     {
 
         private static string ConnectionSTR = "server=localhost;user=root;database=lol;password=lfybk2000";
@@ -25,33 +24,29 @@ namespace DataBaseCore
 
         public static List<string[]> SELECT(string value, string table, string WHERE = "")
         {
-            List<string[]> values = new List<string[]>();
-
             conn.Open();
-
             MySqlCommand SelectAllId = new MySqlCommand($"SELECT {value} FROM {table} {WHERE}", conn);
             MySqlDataReader reader = SelectAllId.ExecuteReader();
-            if(reader.HasRows)
-            while (reader.Read())
-            {
-                string[] pair = new string[reader.FieldCount];
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    pair[i] = reader[i].ToString();
-                }
-                values.Add(pair);
-            }
-            else
-            {
-                values.Add(new string[] { "VOID" });
-            }
+            List<string[]> Values = ReaderHandler(reader);
             conn.Close();
+            return Values;
+        }
 
-
-
+        private static List<string[]> ReaderHandler(MySqlDataReader reader)
+        {
+            List<string[]> values = new List<string[]>();
+            if (reader.HasRows)
+                while (reader.Read())
+                {
+                    string[] pair = new string[reader.FieldCount];
+                    for (int i = 0; i < reader.FieldCount; i++)
+                    {
+                        pair[i] = reader[i].ToString();
+                    }
+                    values.Add(pair);
+                }
             return values;
         }
 
     }
-}
 

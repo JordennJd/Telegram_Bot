@@ -9,8 +9,8 @@ namespace Bot.Domain.Entities
     
     public class Button{
         public string Text;
-        public delegate Task functionForPushButton(object sender, ForFunctionEventArgs e); //������� ������� ���������� ��� ������� �������
-        public event functionForPushButton puchButtonEvent; //����� ������� ������
+        public delegate Task functionForPushButton(object sender, ForFunctionEventArgs e);
+        public event functionForPushButton puchButtonEvent; 
         public Button(string text, functionForPushButton function)
         {
             puchButtonEvent += function;

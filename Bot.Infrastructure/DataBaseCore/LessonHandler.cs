@@ -1,48 +1,51 @@
 ﻿using System;
 using Bot.MessageExchange;
-using DataBaseCore;
+using Bot.Infrastructure.DataBaseCore;
 using TimeTableCore;
+using Bot.Domain.Interfaces;
 
-namespace DataBaseCore
+namespace Bot.Infrastructure.DataBaseCore;
+internal sealed partial class DataBaseHandler
 {
-    internal sealed partial class DataBaseHandler
+
+    public static void AddLesson(ILesson lesson)
     {
+        RequestGenerator.INSERT(GetStringForINSERT(lesson), "TimeTable(Info,DayOfWeek,PairNumber,Modification)");
+    }
 
-        public static void AddLesson(ILesson lesson)
+    private static string GetStringForINSERT(ILesson lesson = null)
+    {
+        if (lesson != null)
+            return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.PairNumber}','{lesson.Modification}'";
+
+        return null;
+    }
+    public static bool IsLessonExist(ILesson lesson)
+    {
+        bool isExist = RequestGenerator.SELECT("Info", "TimeTable",
+            $"WHERE DayOfWeek = '{lesson.DayOfWeek}' AND PairNumber = '{lesson.PairNumber}' AND Modification = '{lesson.Modification}'").Count != 0;
+        return isExist;
+    }
+
+    public static void DeleteLesson(ILesson lesson)
+    {
+        RequestGenerator.DELETE($"DayOfWeek = '{lesson.DayOfWeek}' AND PairNumber = '{lesson.PairNumber}' " +
+            $"AND Modification = '{lesson.Modification}'", "TimeTable");
+    }
+
+
+    public static List<Lesson> GetAllPairs()
+    {
+        return ConvertToClassLesson(RequestGenerator.SELECT("*", "TimeTable"));
+    }
+    private static List<Lesson> ConvertToClassLesson(List<string[]> Lessons)
+    {
+        List<Lesson> lessons = new List<Lesson>();
+        foreach (var lesson in Lessons)
         {
-            RequestGenerator.INSERT(GetStringForINSERT(lesson), "TimeTable(Info,DayOfWeek,PairNumber,Modification)");
+            lessons.Add(new Lesson(lesson[0], lesson[1], lesson[2], lesson[3]));
         }
-
-        private static string GetStringForINSERT(ILesson lesson = null)
-        {
-            if (lesson != null)
-                return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.PairNumber}','{lesson.Modification}'";
-
-            return null;
-        }
-        public static bool IsLessonExist(ILesson lesson)
-        {
-            return RequestGenerator.SELECT("Info", "TimeTable",
-                $"WHERE DayOfWeek = '{lesson.DayOfWeek}' AND PairNumber = '{lesson.PairNumber}' AND Modification = '{lesson.Modification}'")[0][0] !="VOID";
-        }
-
-        public static void DeleteLesson(ILesson lesson)
-        {
-            RequestGenerator.DELETE($"DayOfWeek = '{lesson.DayOfWeek}' AND PairNumber = '{lesson.PairNumber}' " +
-                $"AND Modification = '{lesson.Modification}'", "TimeTable");
-        }
-
-
-        public static List<Lesson> GetAllPairs()
-        {
-            List<Lesson> lessons = new List<Lesson>();
-            List<string[]> Lessons = RequestGenerator.SELECT("*", "TimeTable");
-            foreach (var lesson in Lessons)
-            {
-                lessons.Add(new Lesson(lesson[0], lesson[1], lesson[2], lesson[3]));
-            }
-            return lessons;
-        }
+        return lessons;
     }
 }
 

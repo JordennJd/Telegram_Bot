@@ -2,27 +2,28 @@ using System;
 using Bot.MessageExchange;
 using MySql.Data.MySqlClient;
 using TimeTableCore;
-using DataBaseCore;
+using Bot.Infrastructure.DataBaseCore;
+using Bot.Domain.Interfaces;
 
-namespace DataBaseCore;
+namespace Bot.Infrastructure.DataBaseCore;
 
 internal sealed partial class DataBaseHandler
 {
-    public static void AddUser(IUser user)
+    public static void AddUser(User user)
     {
         if (!IsUserInDB(user))
         {
             RequestGenerator.INSERT(GetStringForINSERT(user), "users(id, name)");
         }
     }
-    public static string GetUserRole(IUser user)
+    public static string GetUserRole(User user)
     {
         return RequestGenerator.SELECT("role", "users",$"WHERE id = '{user.Id}'")[0][0];
 
     }
 
     //Нужно реализовать изменение информации о пользователях в БД
-    private static string GetStringForINSERT(IUser user)
+    private static string GetStringForINSERT(User user)
     {
         if (user != null)
             return $"{user.Id},'{user.FirstName}'";
@@ -30,9 +31,9 @@ internal sealed partial class DataBaseHandler
         return null;
     }
 
-    private static bool IsUserInDB(IUser user)
+    private static bool IsUserInDB(User user)
     {
-        return RequestGenerator.SELECT("id", "users")[0].Contains(user.Id.ToString());
+        return RequestGenerator.SELECT("id", "users")[0][0].Contains(user.Id.ToString());
     }
 
 }
