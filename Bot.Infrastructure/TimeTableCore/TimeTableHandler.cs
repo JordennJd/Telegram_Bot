@@ -18,7 +18,7 @@ class TimeTableHandler
 
     private static string BuildTimeTable(List<Lesson> PairsInfo)
     {
-        int Today = (int)DateTime.Now.DayOfWeek + 1; //Получение текущей даты
+        int Today = (int)DateTime.Now.DayOfWeek; //Получение текущей даты
         string CorrentTimeTable = daysOfWeek[Today] + "\n\n";
 
         foreach (var Pair in PairsInfo)
