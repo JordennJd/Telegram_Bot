@@ -9,12 +9,14 @@ namespace Bot.Infrastructure.DataBaseCore;
 
 internal sealed partial class DataBaseHandler
 {
-    public static void AddUser(User user)
+    public static bool AddUser(User user)
     {
         if (!IsUserInDB(user))
         {
             RequestGenerator.INSERT(GetStringForINSERT(user), "users(id, name)");
+            return true;
         }
+        else return false;
     }
     public static string GetUserRole(User user)
     {
@@ -32,7 +34,11 @@ internal sealed partial class DataBaseHandler
 
     private static bool IsUserInDB(User user)
     {
-        return RequestGenerator.SELECT("id", "users")[0][0].Contains(user.Id.ToString());
+        List<string [] > request = RequestGenerator.SELECT("id", "users");
+        if(request.Count == 0){
+            return false;
+        }
+        else return request[0][0].Contains(user.Id.ToString()); 
     }
 
 }

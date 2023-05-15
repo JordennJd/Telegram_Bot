@@ -113,13 +113,16 @@ namespace Bot.Domain.Entities
 
                 foreach(string strButton in strButtons){
                     string [] strButtonArgs = strButton.Split("&");
+                    if(strButtonArgs.Count()>1){
+                        Button button = functions.FindButtonForFunction(strButtonArgs[1]);
+                        if(button!=null)
+                            rowButtons.Add(new Button(strButtonArgs[0], button.functionForPushButton));
+                        else return false;
+                    }
                     
-                    Button button = functions.FindButtonForFunction(strButtonArgs[1]);
-                    if(button!=null)
-                        rowButtons.Add(new Button(strButtonArgs[0], button.functionForPushButton));
-                    else return false;
                 }
-                buttons.Add(rowButtons);
+                if(rowButtons.Count>0)
+                    buttons.Add(rowButtons);
             }
             Buttons = buttons;
             return true;

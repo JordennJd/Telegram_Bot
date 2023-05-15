@@ -44,7 +44,8 @@ namespace Bot.Domain.Entities
             return null;
         }
         public void Add(IEnumerable<Button> buttons){
-            this.Add(new List<Button>(buttons));
+            this.Add(item: new List<Button>(buttons));
+            
         }
     }
 }

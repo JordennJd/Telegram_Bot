@@ -5,7 +5,7 @@ namespace Bot.Infrastructure.DataBaseCore;
 public sealed class RequestGenerator
     {
 
-        private static string ConnectionSTR = "server=localhost;user=root;database=lol;password=lfybk2000";
+        private static string ConnectionSTR = "server=localhost;user=root;database=lol;password=123123";
         private static MySqlConnection conn = new MySqlConnection(ConnectionSTR);
 
         public static void INSERT(string value, string TABLE_INFO)

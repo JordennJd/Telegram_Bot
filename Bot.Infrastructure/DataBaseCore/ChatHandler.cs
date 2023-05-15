@@ -34,7 +34,14 @@ namespace Bot.Infrastructure.DataBaseCore
 
     public static bool IsChatInDB(Chat chat)
     {
-        return RequestGenerator.SELECT("id", "Chats")[0][0].Contains(chat.Id.ToString());
+        List<string []> request = RequestGenerator.SELECT("id", "Chats");
+        if(request.Count == 0){
+            return false;
+        }
+        else{
+            return request[0][0].Contains(chat.Id.ToString());
+        }
+        
     }
     }
 }

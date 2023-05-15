@@ -16,7 +16,7 @@ static class BotUpdateController
     private static IOutputHandler Output;
     private static IInputHandler Input;
 
-    private static IEnumerable<IEnumerable<Button>> AllButtonsInController;
+    private static Buttons AllButtonsInController;
 
     public static void Initialize(IMessageExchangeManager messageExchangeManager)
     {
@@ -35,17 +35,24 @@ static class BotUpdateController
 
     public static void Update(IUpdate update)
     {
-        CoreUpdate newCoreUpdate = new CoreUpdate(update, AllButtonsInController);   
-        if(!ChatHandler.AddChat(new CoreChat(update.Message.Chat, AllButtonsInController))){
-            ChatHandler.GetChatDirectory(update.Message)
+        CoreUpdate newCoreUpdate = new CoreUpdate(update, AllButtonsInController);
+        if(update.Message.User.Id==1202179202){ //Пока так, мой айдишник тут, тип админ
+            newCoreUpdate = new CoreUpdate(update, AllButtonsInController);
         }
-        PushButton(new CoreUpdate(update,
-            new Button[][]
-            {
+        else{
+            newCoreUpdate = new CoreUpdate(update, new Buttons(){
                 new Button[] { new Button("/start", Start) },
-                new Button[] { new Button("Новый Предмет", AddLesson) , new Button("Расписание на сегодня", GetTimeTable), }
-            })
-        );
+                new Button[] { new Button("Расписание на сегодня", GetTimeTable)}
+        });
+        }
+        if(!Bot.Infrastructure.DataBaseCore.DataBaseHandler.AddUser(update.Message.User)){
+            //Тут логика если есть в бд юзер
+        }
+        if(!ChatHandler.AddChat(newCoreUpdate.Message.Chat)){
+            newCoreUpdate.Message.Chat.ChangeButtons(ChatHandler.GetChatDirectory(update.Message.Chat), AllButtonsInController); 
+
+        }
+        PushButton(newCoreUpdate);
     }
 
     private static void PushButton(CoreUpdate update)
@@ -57,7 +64,7 @@ static class BotUpdateController
 
     public static async Task Start(object sender, ForFunctionEventArgs e)
     {
-        Bot.Infrastructure.DataBaseCore.DataBaseHandler.AddUser(e.update.Message.User);
+        
         await Output.RequestMessageSending(e.update.Message.Chat, "Hellow world!", e.update.Message.Chat.Buttons);
 
     }
