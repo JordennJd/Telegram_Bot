@@ -125,7 +125,7 @@ public partial class TelegramMessageExchangeManager : IMessageExchangeManager
         if(update.Message!= null && update.Message.Text!= null)
             if(_inputHandler.FindChatAndSetEventWait(new TelegramChat(update.Message.Chat), update.Message.Text))
                 return;
-     
+
         UpdateEvent?.Invoke(new TelegramUpdate(update)); 
     }
 

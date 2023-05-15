@@ -459,7 +459,7 @@
           }
         }
       },
-      "System.Text.Json/7.0.1": {
+      "System.Text.Json/7.0.2": {
         "type": "package",
         "dependencies": {
           "System.Text.Encodings.Web": "7.0.0"
@@ -1561,10 +1561,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/7.0.1": {
-      "sha512": "OtDEmCCiNl8JAduFKZ/r0Sw6XZNHwIicUYy/mXgMDGeOsZLshH37qi3oPRzFYiryVktiMoQLByMGPtRCEMYbeQ==",
+    "System.Text.Json/7.0.2": {
+      "sha512": "/LZf/JrGyilojqwpaywb+sSz8Tew7ij4K/Sk+UW8AKfAK7KRhR6mKpKtTm06cYA7bCpGTWfYksIW+mVsdxPegQ==",
       "type": "package",
-      "path": "system.text.json/7.0.1",
+      "path": "system.text.json/7.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1627,7 +1627,7 @@
         "lib/net7.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.7.0.1.nupkg.sha512",
+        "system.text.json.7.0.2.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -1780,30 +1780,30 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "MySql.Data >= 8.0.33",
+      "System.Text.Json >= 7.0.2",
       "Telegram.Bot >= 18.0.0"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\alexb\\.nuget\\packages\\": {}
+    "/Users/danilalatyrev/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Telegram_Bot\\Telegram_Bot.csproj",
+      "projectUniqueName": "/Users/danilalatyrev/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
       "projectName": "Telegram_Bot",
-      "projectPath": "D:\\Telegram_Bot\\Telegram_Bot.csproj",
-      "packagesPath": "C:\\Users\\alexb\\.nuget\\packages\\",
-      "outputPath": "D:\\Telegram_Bot\\obj\\",
+      "projectPath": "/Users/danilalatyrev/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
+      "packagesPath": "/Users/danilalatyrev/.nuget/packages/",
+      "outputPath": "/Users/danilalatyrev/ForProjects/Telegram_Bot/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\alexb\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "/Users/danilalatyrev/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -1826,6 +1826,10 @@
             "target": "Package",
             "version": "[8.0.33, )"
           },
+          "System.Text.Json": {
+            "target": "Package",
+            "version": "[7.0.2, )"
+          },
           "Telegram.Bot": {
             "target": "Package",
             "version": "[18.0.0, )"
@@ -1847,7 +1851,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.203/RuntimeIdentifierGraph.json"
       }
     }
   }
