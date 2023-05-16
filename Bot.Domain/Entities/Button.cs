@@ -24,9 +24,13 @@ namespace Bot.Domain.Entities
         }
     }
 
-    public class Buttons : List<List<Button>> {
+    public class Buttons{
+        private IEnumerable<IEnumerable<Button>> buttons;
+        public Buttons(IEnumerable<IEnumerable<Button>> buttons){
+            this.buttons = buttons;
+        }
         public Button FindButtonForText(string TextButton){
-            foreach(List<Button> rowButton in this){
+            foreach(IEnumerable<Button> rowButton in this.buttons){
                 foreach(Button button in rowButton){
                     if(button.Text == TextButton)
                         return button;
@@ -35,17 +39,13 @@ namespace Bot.Domain.Entities
             return null;
         }
         public Button FindButtonForFunction(string TextFunction){
-            foreach(List<Button> rowButton in this){
+            foreach(IEnumerable<Button> rowButton in this.buttons){
                 foreach(Button button in rowButton){
                     if(button.functionForPushButton.Method.Name == TextFunction)
                         return button;
                 }
             }
             return null;
-        }
-        public void Add(IEnumerable<Button> buttons){
-            this.Add(item: new List<Button>(buttons));
-            
         }
     }
 }
