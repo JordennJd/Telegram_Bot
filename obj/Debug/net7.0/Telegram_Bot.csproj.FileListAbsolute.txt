@@ -121,3 +121,11 @@ D:/Telegram_Bot/bin/Debug/net7.0/runtimes/win/lib/netcoreapp3.0/System.Windows.E
 /Users/danilalatyrev/ForProjects/Telegram_Bot/obj/Debug/net7.0/Telegram_Bot.csproj.CopyComplete
 /Users/danilalatyrev/ForProjects/Telegram_Bot/obj/Debug/net7.0/Telegram_Bot.genruntimeconfig.cache
 /Users/danilalatyrev/ForProjects/Telegram_Bot/obj/Debug/net7.0/ref/Telegram_Bot.dll
+D:\Telegram_Bot\obj\Debug\net7.0\Telegram_Bot.csproj.AssemblyReference.cache
+D:\Telegram_Bot\obj\Debug\net7.0\Telegram_Bot.GeneratedMSBuildEditorConfig.editorconfig
+D:\Telegram_Bot\obj\Debug\net7.0\Telegram_Bot.AssemblyInfoInputs.cache
+D:\Telegram_Bot\obj\Debug\net7.0\Telegram_Bot.AssemblyInfo.cs
+D:\Telegram_Bot\obj\Debug\net7.0\Telegram_Bot.csproj.CoreCompileInputs.cache
+D:\Telegram_Bot\obj\Debug\net7.0\Telegram_Bot.dll
+D:\Telegram_Bot\obj\Debug\net7.0\refint\Telegram_Bot.dll
+D:\Telegram_Bot\obj\Debug\net7.0\Telegram_Bot.pdb
