@@ -18,6 +18,8 @@ static class BotUpdateController
 
     private static Buttons AllButtonsInController;
 
+    private static Sessians Sessians;
+
     public static void Initialize(IMessageExchangeManager messageExchangeManager)
     {
         messageExchangeManager.UpdateEvent += Update;
@@ -25,10 +27,12 @@ static class BotUpdateController
         Output = messageExchangeManager.GetOutputHandler();
         Input = messageExchangeManager.GetInputHandler();
 
+        Sessians = new Sessians();
         AllButtonsInController  = new Buttons(){
                 new Button[] { new Button("/start", Start) },
                 new Button[] { new Button("Новый Предмет", AddLesson) , new Button("Расписание на сегодня", GetTimeTable)}
         };
+
             
     }
 
