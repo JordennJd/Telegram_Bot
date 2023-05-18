@@ -20,7 +20,6 @@ static class BotUpdateController
 
     public static void Initialize(IMessageExchangeManager messageExchangeManager)
     {
-
         messageExchangeManager.UpdateEvent += Update;
 
         Output = messageExchangeManager.GetOutputHandler();
@@ -36,7 +35,7 @@ static class BotUpdateController
     public static void Update(IUpdate update)
     {
         CoreUpdate newCoreUpdate = new CoreUpdate(update, AllButtonsInController);
-        if(update.Message.User.Id==1202179202){ //Пока так, мой айдишник тут, тип админ
+        if(update.Message.User.Id==1202179202 || update.Message.User.Id==1047654455){ //Пока так, мой айдишник тут, тип админ
             newCoreUpdate = new CoreUpdate(update, AllButtonsInController);
         }
         else{

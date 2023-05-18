@@ -18,14 +18,24 @@ class TimeTableHandler
 
     private static string BuildTimeTable(List<Lesson> PairsInfo)
     {
-        int Today = (int)DateTime.Now.DayOfWeek + 1; //Получение текущей даты
+        int Today = (int)DateTime.Now.DayOfWeek; //Получение текущей даты
         string CorrentTimeTable = daysOfWeek[Today] + "\n\n";
-
+        Lesson[] SortedPairs = new Lesson[7];
+        
         foreach (var Pair in PairsInfo)
+        {
             if (isSuitablePlaceForPair(Pair) && Pair.DayOfWeek == daysOfWeek[Today])
-                CorrentTimeTable += $"{Pair.Info} {pairsTime[Convert.ToInt32(Pair.PairNumber)]} \n";
-
+            {
+                SortedPairs[Convert.ToInt32(Pair.PairNumber)] = Pair;
+            }
+        }
+        
+        foreach (Lesson pair in SortedPairs)
+        {
+            if(pair!=null) CorrentTimeTable += $"{pair.Info} {pairsTime[Convert.ToInt32(pair.PairNumber)]} \n";
+        }
         return CorrentTimeTable;
+
     }
 
     private static bool isSuitablePlaceForPair(Lesson Pair)
@@ -35,4 +45,5 @@ class TimeTableHandler
 
         return false;
     }
+    
 }
