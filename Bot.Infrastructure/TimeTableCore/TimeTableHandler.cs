@@ -1,5 +1,4 @@
 using Bot.Infrastructure.DataBaseCore;
-using System;
 using Bot.Domain.Interfaces;
 
 namespace TimeTableCore;
@@ -12,27 +11,56 @@ class TimeTableHandler
 
     public static string GetCorrentTimeTable()
     {
-        List<Lesson> PairsInfo = Bot.Infrastructure.DataBaseCore.DataBaseHandler.GetAllPairs();
-        return BuildTimeTable(PairsInfo);
-    }
-
-    private static string BuildTimeTable(List<Lesson> PairsInfo)
-    {
         int Today = (int)DateTime.Now.DayOfWeek; //Получение текущей даты
+        List<Lesson> PairsInfo = DataBaseHandler.GetAllPairs();
+        
         string CorrentTimeTable = daysOfWeek[Today] + "\n\n";
 
         foreach (var Pair in PairsInfo)
+        {
             if (isSuitablePlaceForPair(Pair) && Pair.DayOfWeek == daysOfWeek[Today])
+            {
                 CorrentTimeTable += $"{Pair.Info} {pairsTime[Convert.ToInt32(Pair.PairNumber)]} \n";
-
+            }
+        }
         return CorrentTimeTable;
     }
-
-    private static bool isSuitablePlaceForPair(Lesson Pair)
+    private static bool isSuitablePlaceForPair(ILesson Pair)
     {
-        for (int i = 1; i < 8; i++)
+        for (int i = 1; i < 7; i++)
             if (Pair.PairNumber == i.ToString()) return true;
 
         return false;
     }
+    
+    public static bool isInputCorrect(string input, int Case)
+    {
+        switch (Case)
+        {
+            case(1):
+                return input.Length > 3;
+            
+            case(2):
+                return daysOfWeek.Contains(input);
+            
+            case(3):
+                try
+                {
+                    int Input = Convert.ToInt32(input);
+                    return (Input >= 1 & Input <= 6);
+                }
+                catch
+                {
+                    return false;
+                }
+                    
+            case(4):
+                return input.Contains("all") || input.Contains("red") || input.Contains("blue");
+        }
+
+        return false;
+    }
 }
+                
+
+
