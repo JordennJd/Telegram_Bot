@@ -73,14 +73,14 @@ static class BotUpdateController
         string Info = await Input.RequestMessageReceiving(e.update.Message.Chat);
         do
         {
-            if (!TimeTableHandler.isInputCorrect(Info, 1))
+            if (!InputCheker.isInputCorrect(Info, 1))
             {
                 await Output.RequestMessageSending(e.update.Message.Chat,
                     "Длина информации о предмете должна состовлять больше 3 символов",ButtonsButton: null);
                 Info = await Input.RequestMessageReceiving(e.update.Message.Chat);
 
             }
-        } while (!TimeTableHandler.isInputCorrect(Info,1));
+        } while (!InputCheker.isInputCorrect(Info,1));
         
         await Output.RequestMessageSending(e.update.Message.Chat,
             "Напишите номер дня недели(1-7)",
@@ -88,14 +88,14 @@ static class BotUpdateController
         string DayOfWeek = await Input.RequestMessageReceiving(e.update.Message.Chat);
         do
         {
-            if (!TimeTableHandler.isInputCorrect(DayOfWeek, 2))
+            if (!InputCheker.isInputCorrect(DayOfWeek, 2))
             {
                 await Output.RequestMessageSending(e.update.Message.Chat,
                     "Выбирите день недели из предложенных вариантов",new string[][] { new string[] { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" } });
                 DayOfWeek = await Input.RequestMessageReceiving(e.update.Message.Chat);
 
             }
-        } while (!TimeTableHandler.isInputCorrect(DayOfWeek,2));
+        } while (!InputCheker.isInputCorrect(DayOfWeek,2));
         //Функция проверки дня недели
         await Output.RequestMessageSending(e.update.Message.Chat,
             "Напишите номер пары(1-6)", 
@@ -103,14 +103,14 @@ static class BotUpdateController
         string PairNumber = await Input.RequestMessageReceiving(e.update.Message.Chat);
         do
         {
-            if (!TimeTableHandler.isInputCorrect(PairNumber, 3))
+            if (!InputCheker.isInputCorrect(PairNumber, 3))
             {
                 await Output.RequestMessageSending(e.update.Message.Chat,
                     "Выбирите число от 1 до 6",new string[][] { new string[] { "1", "2", "3", "4", "5", "6" } });
                 PairNumber = await Input.RequestMessageReceiving(e.update.Message.Chat);
 
             }
-        } while (!TimeTableHandler.isInputCorrect(PairNumber,3));
+        } while (!InputCheker.isInputCorrect(PairNumber,3));
         //Функция проверки номера пары
         await Output.RequestMessageSending(e.update.Message.Chat,
             "Выбирите модификацию пары", 
@@ -118,14 +118,14 @@ static class BotUpdateController
         string Modification = await Input.RequestMessageReceiving(e.update.Message.Chat);
         do
         {
-            if (!TimeTableHandler.isInputCorrect(Modification, 4))
+            if (!InputCheker.isInputCorrect(Modification, 4))
             {
                 await Output.RequestMessageSending(e.update.Message.Chat,
                     "Выбирите из предложенных выриантов",new string[][] { new string[] { "all", "red", "blue" } });
                 Modification = await Input.RequestMessageReceiving(e.update.Message.Chat);
 
             }
-        } while (!TimeTableHandler.isInputCorrect(Modification,4));
+        } while (!InputCheker.isInputCorrect(Modification,4));
         Lesson lesson = new Lesson(Info, DayOfWeek, PairNumber, Modification);
         
         if (!Bot.Infrastructure.DataBaseCore.DataBaseHandler.IsLessonExist(lesson))
