@@ -13,9 +13,7 @@ public class Program
         messageExchangeManager.Initialize(); 
         BotUpdateController.Initialize(messageExchangeManager);
          //Привязываем вход программы
-
-      
-        
+         
         Console.ReadLine();
     }
 }

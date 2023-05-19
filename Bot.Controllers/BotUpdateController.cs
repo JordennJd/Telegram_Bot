@@ -25,7 +25,7 @@ static class BotUpdateController
         Input = messageExchangeManager.GetInputHandler();
     }
 
-    public static void Update(IUpdate update)
+    private static void Update(IUpdate update)
     {
 
 

@@ -12,14 +12,7 @@ internal sealed partial class DataBaseHandler
     {
         RequestGenerator.INSERT(GetStringForINSERT(lesson), "TimeTable(Info,DayOfWeek,PairNumber,Modification)");
     }
-
-    private static string GetStringForINSERT(ILesson lesson = null)
-    {
-        if (lesson != null)
-            return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.PairNumber}','{lesson.Modification}'";
-
-        return null;
-    }
+    
     public static bool IsLessonExist(ILesson lesson)
     {
         bool isExist = RequestGenerator.SELECT("Info", "TimeTable",
@@ -38,6 +31,7 @@ internal sealed partial class DataBaseHandler
     {
         return ConvertToClassLesson(RequestGenerator.SELECT("*", "TimeTable"));
     }
+    
     private static List<Lesson> ConvertToClassLesson(List<string[]> Lessons)
     {
         List<Lesson> lessons = new List<Lesson>();
@@ -46,6 +40,14 @@ internal sealed partial class DataBaseHandler
             lessons.Add(new Lesson(lesson[0], lesson[1], lesson[2], lesson[3]));
         }
         return lessons;
+    }
+    
+    private static string GetStringForINSERT(ILesson lesson = null)
+    {
+        if (lesson != null)
+            return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.PairNumber}','{lesson.Modification}'";
+
+        return null;
     }
 }
 

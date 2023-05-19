@@ -1,6 +1,6 @@
 ﻿using System;
 using MySql.Data.MySqlClient;
-
+    //TODO реализовать базу данных по паттерну стратегия 
 namespace Bot.Infrastructure.DataBaseCore;
 public sealed class RequestGenerator
     {
@@ -37,12 +37,12 @@ public sealed class RequestGenerator
             List<string[]> values = new List<string[]>();
             while (reader.Read())
             {
-                string[] pair = new string[reader.FieldCount];
+                string[] Row = new string[reader.FieldCount];
                 for (int i = 0; i < reader.FieldCount; i++)
                 {
-                    pair[i] = reader[i].ToString();
+                    Row[i] = reader[i].ToString();
                 }
-                values.Add(pair);
+                values.Add(Row);
             }
             return values;
         }

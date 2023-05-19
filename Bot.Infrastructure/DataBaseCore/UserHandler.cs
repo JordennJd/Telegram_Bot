@@ -16,6 +16,7 @@ internal sealed partial class DataBaseHandler
             RequestGenerator.INSERT(GetStringForINSERT(user), "users(id, name)");
         }
     }
+    
     public static string GetUserRole(User user)
     {
         return RequestGenerator.SELECT("role", "users", $"WHERE id = '{user.Id}'")[0][0];
