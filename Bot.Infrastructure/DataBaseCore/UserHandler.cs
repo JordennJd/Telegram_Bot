@@ -1,8 +1,4 @@
-using System;
-using Bot.MessageExchange;
-using MySql.Data.MySqlClient;
-using TimeTableCore;
-using Bot.Infrastructure.DataBaseCore;
+using Bot.Infrastructure.DataBaseCore.InnerRealisation;
 using Bot.Domain.Interfaces;
 
 namespace Bot.Infrastructure.DataBaseCore;
@@ -25,10 +21,7 @@ internal sealed partial class DataBaseHandler
     //TODO Нужно реализовать изменение информации о пользователях в БД
     private static string GetStringForINSERT(User user)
     {
-        if (user != null)
-            return $"{user.Id},'{user.FirstName}'";
-
-        return null;
+        return $"{user.Id},'{user.FirstName}'";
     }
 
     private static bool IsUserInDB(User user)

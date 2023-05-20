@@ -1,6 +1,4 @@
-﻿using System;
-using Bot.MessageExchange;
-using Bot.Infrastructure.DataBaseCore;
+﻿using Bot.Infrastructure.DataBaseCore.InnerRealisation;
 using TimeTableCore;
 using Bot.Domain.Interfaces;
 
@@ -42,12 +40,9 @@ internal sealed partial class DataBaseHandler
         return lessons;
     }
     
-    private static string GetStringForINSERT(ILesson lesson = null)
+    private static string GetStringForINSERT(ILesson lesson)
     {
-        if (lesson != null)
-            return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.PairNumber}','{lesson.Modification}'";
-
-        return null;
+        return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.PairNumber}','{lesson.Modification}'";
     }
 }
 
