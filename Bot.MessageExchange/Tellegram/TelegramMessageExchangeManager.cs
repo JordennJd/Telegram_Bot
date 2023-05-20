@@ -46,7 +46,7 @@ public partial class TelegramMessageExchangeManager : IMessageExchangeManager
     private class TelegramUser : User
     {
         public override long Id{get;}
-        public override string FirstName{get; set;}
+        public override string FirstName{get; protected set;}
         public TelegramUser(Telegram.Bot.Types.User user){
             Id=user.Id;
             FirstName = user.FirstName;

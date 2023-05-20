@@ -9,14 +9,12 @@ namespace Bot.Infrastructure.DataBaseCore
 {
     public class ChatHandler
     {
-        public static bool AddChat(CoreChat chat)
+    public static void AddChat(CoreChat chat)
     {
-        if (!IsChatInDB(chat))
-        {
             RequestGenerator.INSERT(GetStringForINSERT(chat), "chats(id, directory)");
-            return true;
-        }
-        else return false;
+    }
+    public static void UpdateChat(CoreChat chat){
+        RequestGenerator.UPDATE($"directory = '{chat.Directory}'","chats", $"id = '{chat.Id}'");
     }
     public static string GetChatDirectory(Chat chat)
     {

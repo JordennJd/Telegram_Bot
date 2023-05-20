@@ -27,7 +27,7 @@ namespace Bot.Domain.Interfaces
     public abstract class User
     {
         public virtual long Id { get; }
-        public virtual string FirstName { get; set; }
+        public virtual string FirstName { get; protected set; }
 
         public virtual void ChangeName(string FirstName)
         {

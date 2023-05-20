@@ -5,7 +5,7 @@ namespace Bot.Infrastructure.DataBaseCore;
 public sealed class RequestGenerator
     {
 
-        private static string ConnectionSTR = "server=localhost;user=root;database=lol;password=lfybk2000";
+        private static string ConnectionSTR = "server=localhost;user=root;database=lol;password=123123";
         private static MySqlConnection conn = new MySqlConnection(ConnectionSTR);
 
         public static void INSERT(string value, string TABLE_INFO)
@@ -22,6 +22,12 @@ public sealed class RequestGenerator
             conn.Close();
         }
 
+        //UPDATE users SET role = 'admin', name = 'danil' WHERE id = '1047654455';
+        public static void UPDATE(string value, string TABLE_INFO, string WHERE){
+            conn.Open();
+            new MySqlCommand($"UPDATE {TABLE_INFO} SET {value} WHERE {WHERE}", conn).ExecuteScalar();
+            conn.Close();
+        }
         public static List<string[]> SELECT(string value, string table, string WHERE = "")
         {
             conn.Open();

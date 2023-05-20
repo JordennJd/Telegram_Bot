@@ -18,7 +18,7 @@ static class BotUpdateController
 
     private static Buttons AllButtonsInController;
 
-    private static Sessians Sessians;
+    private static Sessias Sessias;
 
     public static void Initialize(IMessageExchangeManager messageExchangeManager)
     {
@@ -27,41 +27,93 @@ static class BotUpdateController
         Output = messageExchangeManager.GetOutputHandler();
         Input = messageExchangeManager.GetInputHandler();
 
-        Sessians = new Sessians();
-        AllButtonsInController  = new Buttons(){
-                new Button[] { new Button("/start", Start) },
-                new Button[] { new Button("Новый Предмет", AddLesson) , new Button("Расписание на сегодня", GetTimeTable)}
-        };
+        Sessias = new Sessias();
 
-            
-    }
-
-    public static void Update(IUpdate update)
-    {
-        CoreUpdate newCoreUpdate = new CoreUpdate(update, AllButtonsInController);
-        if(update.Message.User.Id==1202179202 || update.Message.User.Id==1047654455){ //Пока так, мой айдишник тут, тип админ
-            newCoreUpdate = new CoreUpdate(update, AllButtonsInController);
-        }
-        else{
-            newCoreUpdate = new CoreUpdate(update, new Buttons(){
+        //Сюда надо добавлять все кнопки которые есть для работы в этом контроллере.
+        AllButtonsInController  = new Buttons(new Button[][]{
                 new Button[] { new Button("/start", Start) },
-                new Button[] { new Button("Расписание на сегодня", GetTimeTable)}
+                new Button[] { new Button("Новый Предмет", AddLesson) , new Button("Расписание на сегодня", GetTimeTable)},
+                new Button[] { new Button("d", ButtonOnMenu) },
+                new Button[] { new Button("d", MenuTest) },
         });
-        }
-        if(!Bot.Infrastructure.DataBaseCore.DataBaseHandler.AddUser(update.Message.User)){
-            //Тут логика если есть в бд юзер
-        }
-        if(!ChatHandler.AddChat(newCoreUpdate.Message.Chat)){
-            newCoreUpdate.Message.Chat.ChangeButtons(ChatHandler.GetChatDirectory(update.Message.Chat), AllButtonsInController); 
-
-        }
-        PushButton(newCoreUpdate);
+        
+        
+        Sessias.AddButtonInListAllButtons(AllButtonsInController);
     }
-
     private static void PushButton(CoreUpdate update)
     {
         update.Message.Chat.Buttons.FindButtonForText(update.Message.Text)?.PushButton(new ForFunctionEventArgs(update));
 
+    }
+
+    private static void ChangeButtons(CoreChat chat , Buttons buttons){
+        chat.ChangeButtons(buttons);
+    }
+
+    public static void Update(IUpdate update)
+    {
+        Sessia curentSessia = Sessias.GetOrAddSessia(update.Message.User.Id, ()=>{
+            CoreChat coreChat;
+            CoreUser coreUser;
+            //id==1202179202 || 1047654455
+            Predicate<long> isAdmin = (long id) =>  id==1047654455;
+
+            if(DataBaseHandler.IsUserInDB(update.Message.User)){
+                coreUser = new CoreUser(update.Message.User.Id, DataBaseHandler.GetUserName(update.Message.User), DataBaseHandler.GetUserRole(update.Message.User));
+            }else{
+                ChangesArgsForCoreUpdate args;
+                if(isAdmin(update.Message.User.Id))
+                    args = new ChangesArgsForCoreUpdate("admin",null);
+                else
+                    args = new ChangesArgsForCoreUpdate("Tvar drozhashchaya",null);
+                coreUser = new CoreUser(update.Message.User, args);
+                DataBaseHandler.AddUser(coreUser);
+            }
+            
+            if(ChatHandler.IsChatInDB(update.Message.Chat)){
+                coreChat = new CoreChat(update.Message.Chat, ChatHandler.GetChatDirectory(update.Message.Chat), AllButtonsInController);
+            }else{
+                ChangesArgsForCoreUpdate args;
+                if(isAdmin(update.Message.User.Id))
+                    args = new ChangesArgsForCoreUpdate(null, new Buttons(new Button[][]{
+                        new Button[] { new Button("/start", Start) },
+                        new Button[] { new Button("Новый Предмет", AddLesson) , new Button("Расписание на сегодня", GetTimeTable)},
+                        new Button[] { new Button("MenuTest", MenuTest) }
+                    }));
+                else{
+                    args = new ChangesArgsForCoreUpdate(null, new Buttons(new Button[][]{
+                        new Button[] { new Button("/start", Start) },
+                        new Button[] { new Button("Расписание на сегодня", GetTimeTable)},
+                        new Button[] { new Button("MenuTest", MenuTest) }
+                        }));
+                    
+                }
+                coreChat = new CoreChat(update.Message.Chat, args);
+                ChatHandler.AddChat(coreChat);
+            }
+            return (coreUser, coreChat);
+        });
+        
+        curentSessia.ResetTimer();
+        PushButton(new CoreUpdate(new CoreMessage(curentSessia.User, curentSessia.Chat, update.Message.Text)));
+    }
+
+    public static async Task MenuTest(object sender, ForFunctionEventArgs e)
+    {
+        Buttons menu = new Buttons(new Button[][]{new Button[]{new Button("Кнопка в меню",ButtonOnMenu)}});
+        e.update.Message.Chat.ChangeButtons(menu);
+        await Output.RequestMessageSending(e.update.Message.Chat, "Менюшка", menu);
+
+    }
+    public static async Task ButtonOnMenu(object sender, ForFunctionEventArgs e)
+    {
+        Buttons menu = new Buttons(new Button[][]{
+                new Button[] { new Button("/start", Start) },
+                new Button[] { new Button("Новый Предмет", AddLesson) , new Button("Расписание на сегодня", GetTimeTable)},
+                new Button[] { new Button("MenuTest", MenuTest) }}
+            );
+        e.update.Message.Chat.ChangeButtons(menu);
+        await Output.RequestMessageSending(e.update.Message.Chat, "Ты в менюшке был", menu);
     }
 
 
@@ -84,7 +136,7 @@ static class BotUpdateController
         await Output.RequestMessageSending(e.update.Message.Chat,
             "Напишите ифнормацию о предмете(название,аудитория,преподаватель)",ButtonsButton: null);
         string Info = await Input.RequestMessageReceiving(e.update.Message.Chat);
-        
+
         await Output.RequestMessageSending(e.update.Message.Chat,
             "Напишите номер дня недели(1-7)",
             new string[][] { new string[] { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" } });

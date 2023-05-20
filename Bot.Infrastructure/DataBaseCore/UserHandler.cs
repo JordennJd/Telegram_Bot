@@ -4,35 +4,38 @@ using MySql.Data.MySqlClient;
 using TimeTableCore;
 using Bot.Infrastructure.DataBaseCore;
 using Bot.Domain.Interfaces;
+using Bot.Domain.Entities;
 
 namespace Bot.Infrastructure.DataBaseCore;
 
 internal sealed partial class DataBaseHandler
 {
-    public static bool AddUser(User user)
+    public static void AddUser(CoreUser user)
     {
-        if (!IsUserInDB(user))
-        {
-            RequestGenerator.INSERT(GetStringForINSERT(user), "users(id, name)");
-            return true;
-        }
-        else return false;
+            RequestGenerator.INSERT(GetStringForINSERT(user), "users(id, name, role)");
+    }
+    public static void UpdateUser(CoreUser user){
+        RequestGenerator.UPDATE($"name = '{user.FirstName}', role = '{user.Role}'","users", $"id = '{user.Id}'");
     }
     public static string GetUserRole(User user)
     {
         return RequestGenerator.SELECT("role", "users", $"WHERE id = '{user.Id}'")[0][0];
     }
+     public static string GetUserName(User user)
+    {
+        return RequestGenerator.SELECT("name", "users", $"WHERE id = '{user.Id}'")[0][0];
+    }
 
     //TODO Нужно реализовать изменение информации о пользователях в БД
-    private static string GetStringForINSERT(User user)
+    private static string GetStringForINSERT(CoreUser user)
     {
         if (user != null)
-            return $"{user.Id},'{user.FirstName}'";
+            return $"{user.Id},'{user.FirstName}','{user.Role}'";
 
         return null;
     }
 
-    private static bool IsUserInDB(User user)
+    public static bool IsUserInDB(User user)
     {
         List<string [] > request = RequestGenerator.SELECT("id", "users");
         if(request.Count == 0){

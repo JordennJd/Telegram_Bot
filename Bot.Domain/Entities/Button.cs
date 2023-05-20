@@ -25,7 +25,7 @@ namespace Bot.Domain.Entities
     }
 
     public class Buttons{
-        private IEnumerable<IEnumerable<Button>> buttons;
+        public IEnumerable<IEnumerable<Button>> buttons{get;}
         public Buttons(IEnumerable<IEnumerable<Button>> buttons){
             this.buttons = buttons;
         }
