@@ -62,7 +62,9 @@ static class BotUpdateController
     public static async Task GetTimeTable(object sender, ForFunctionEventArgs e)
     {
 
-        await Output.RequestMessageSending(e.update.Message.Chat, TimeTableCore.TimeTableHandler.GetCorrentTimeTable(), e.update.Message.Chat.Buttons);
+        await Output.RequestMessageSending(e.update.Message.Chat,
+            TimeTableHandler.GetCorrentTimeTable(DataBaseHandler.GetAllPairs()),
+            e.update.Message.Chat.Buttons);
 
     }
 

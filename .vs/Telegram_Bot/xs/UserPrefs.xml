@@ -1,16 +1,14 @@
-﻿<Properties StartupConfiguration="{F6127389-34A1-4EEB-85E0-183CC9AAE07D}|Default">
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Bot.Domain/Entities/ForFunctionEventArgs.cs">
+﻿<Properties StartupConfiguration="{AB18AC3D-C889-4AC8-A15B-8A5323E3AF35}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Telegram_Bot.Test/UnitTest1.cs">
     <Files>
       <File FileName="Bot.Infrastructure/TimeTableCore/TimeTableHandler.cs" />
       <File FileName="Bot.Infrastructure/TimeTableCore/Lesson.cs" />
       <File FileName="Bot.Infrastructure/DataBaseCore/UserHandler.cs" />
-      <File FileName="Bot.Infrastructure/DataBaseCore/RequesGenerator.cs" Line="49" Column="1" />
-      <File FileName="Bot.Infrastructure/DataBaseCore/LessonHandler.cs" Line="1" Column="1" />
-      <File FileName="Bot.Domain/Entities/Button.cs" Line="1" Column="1" />
-      <File FileName="Bot.Domain/Entities/ForFunctionEventArgs.cs" Line="1" Column="1" />
+      <File FileName="Bot.Infrastructure/DataBaseCore/LessonHandler.cs" />
+      <File FileName="Bot.Domain/Entities/Button.cs" />
+      <File FileName="Bot.Domain/Entities/ForFunctionEventArgs.cs" />
+      <File FileName="Program.cs" />
+      <File FileName="Telegram_Bot.Test/UnitTest1.cs" Line="29" Column="2" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -19,9 +17,7 @@
             <Node name="Telegram_Bot" expanded="True">
               <Node name="Bot.Controllers" expanded="True" />
               <Node name="Bot.Domain" expanded="True">
-                <Node name="Entities" expanded="True">
-                  <Node name="ForFunctionEventArgs.cs" selected="True" />
-                </Node>
+                <Node name="Entities" expanded="True" />
               </Node>
               <Node name="Bot.Infrastructure" expanded="True">
                 <Node name="DataBaseCore" expanded="True" />
@@ -31,13 +27,20 @@
                 <Node name="Tellegram" expanded="True" />
               </Node>
             </Node>
+            <Node name="Telegram_Bot.Test" expanded="True" selected="True">
+              <Node name="Dependencies" expanded="True" />
+            </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.Telegram__Bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Telegram__Bot.Test PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.Telegram__Bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

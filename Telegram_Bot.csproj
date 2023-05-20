@@ -14,12 +14,20 @@
 
   <ItemGroup>
     <Compile Remove="Bot.Domain\TimeTableCore\ILesson.cs" />
+    <Compile Remove="Telegram_Bot.Test\**" />
+    <Compile Remove="TestProject1\**" />
   </ItemGroup>
 
   <ItemGroup>
     <None Remove="Bot.Infrastructure\TimeTableCore\" />
+    <None Remove="Telegram_Bot.Test\**" />
+    <None Remove="TestProject1\**" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Bot.Infrastructure\TimeTableCore\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Remove="Telegram_Bot.Test\**" />
+    <EmbeddedResource Remove="TestProject1\**" />
   </ItemGroup>
 </Project>

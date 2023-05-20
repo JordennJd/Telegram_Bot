@@ -1,22 +1,24 @@
+using System.Runtime.CompilerServices;
 using Bot.Infrastructure.DataBaseCore;
 using Bot.Domain.Interfaces;
 
+[assembly: InternalsVisibleTo("TestProject1")]
 namespace TimeTableCore;
 
-file class InfoStorage
+class InfoStorage
 {
     public static string[] daysOfWeek = { "", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
-    public static string[] pairsTime = { "","9:30 - 11:00 ", "11:10–12:40 ", "13:00–14:30 ",
-        "15:00–16:30 ", "16:40–18:10 ", "18:30–20:00" };
+    public static string[] pairsTime = { "","9:30-11:00", "11:10–12:40", "13:00–14:30",
+        "15:00–16:30", "16:40–18:10", "18:30–20:00" };
 }
 class TimeTableHandler
 {
 
 
-    public static string GetCorrentTimeTable()
+    public static string GetCorrentTimeTable(List<Lesson> lessons)
     {
         int Today = (int)DateTime.Now.DayOfWeek; //Получение текущей даты
-        List<Lesson> PairsInfo = DataBaseHandler.GetAllPairs();
+        List<Lesson> PairsInfo = lessons;
         
         string CorrentTimeTable = InfoStorage.daysOfWeek[Today] + "\n\n";
 
@@ -24,7 +26,7 @@ class TimeTableHandler
         {
             if (isSuitablePlaceForPair(Pair) && Pair.DayOfWeek == InfoStorage.daysOfWeek[Today])
             {
-                CorrentTimeTable += $"{Pair.Info} {InfoStorage.pairsTime[Convert.ToInt32(Pair.PairNumber)]} \n";
+                CorrentTimeTable += $"{Pair.Info} {InfoStorage.pairsTime[Convert.ToInt32(Pair.PairNumber)]}\n";
             }
         }
         return CorrentTimeTable;

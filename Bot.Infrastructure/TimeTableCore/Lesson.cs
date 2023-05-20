@@ -3,7 +3,7 @@ using Bot.Domain.Interfaces;
 
 namespace TimeTableCore
 {
-    class Lesson : ILesson
+    public class Lesson : ILesson
     {
         public string Info { get; }
         public string DayOfWeek { get; }
