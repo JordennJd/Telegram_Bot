@@ -1,5 +1,4 @@
 using System.Runtime.CompilerServices;
-using Bot.Infrastructure.DataBaseCore;
 using Bot.Domain.Interfaces;
 
 [assembly: InternalsVisibleTo("TestProject1")]
@@ -11,25 +10,33 @@ class InfoStorage
     public static string[] pairsTime = { "","9:30-11:00", "11:10–12:40", "13:00–14:30",
         "15:00–16:30", "16:40–18:10", "18:30–20:00" };
 }
+
 class TimeTableHandler
 {
 
 
     public static string GetCorrentTimeTable(List<Lesson> lessons)
     {
-        int Today = (int)DateTime.Now.DayOfWeek; //Получение текущей даты
+        int Today = (int)DateTime.Now.DayOfWeek+6; //Получение текущей даты
         List<Lesson> PairsInfo = lessons;
         
-        string CorrentTimeTable = InfoStorage.daysOfWeek[Today] + "\n\n";
-
+        string StringForUOutput = InfoStorage.daysOfWeek[Today] + "\n\n";
+        Lesson[] CorrentTimeTable = new Lesson[6];
         foreach (var Pair in PairsInfo)
         {
             if (isSuitablePlaceForPair(Pair) && Pair.DayOfWeek == InfoStorage.daysOfWeek[Today])
             {
-                CorrentTimeTable += $"{Pair.Info} {InfoStorage.pairsTime[Convert.ToInt32(Pair.PairNumber)]}\n";
+                CorrentTimeTable[Convert.ToInt32(Pair.PairNumber)] = Pair;
             }
         }
-        return CorrentTimeTable;
+        foreach (Lesson Pair in CorrentTimeTable)
+        {
+            if(Pair!=null) 
+                StringForUOutput += $"{Pair.Info} {InfoStorage.pairsTime[Convert.ToInt32(Pair.PairNumber)]}\n";
+            
+        }
+        return StringForUOutput;
+
     }
     private static bool isSuitablePlaceForPair(ILesson Pair)
     {
@@ -40,7 +47,7 @@ class TimeTableHandler
     }
 }
 
-class InputCheker
+class InputCheker 
 {
     
     public static bool isInputCorrect(string input, int Case)
