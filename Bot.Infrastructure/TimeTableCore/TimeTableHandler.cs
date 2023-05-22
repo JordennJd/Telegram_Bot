@@ -1,14 +1,13 @@
 using System.Runtime.CompilerServices;
 using Bot.Domain.Interfaces;
-using Bot.Infrastructure.DataBaseCore;
 
 [assembly: InternalsVisibleTo("TestProject1")]
 namespace TimeTableCore;
 
 class InfoStorage
 {
-    public static string[] daysOfWeek = { "", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
-    public static string[] pairsTime = { "","9:30-11:00", "11:10–12:40", "13:00–14:30",
+    public static readonly string[] daysOfWeek = { "", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" };
+    public static readonly string[] LessonsTime = { "","9:30-11:00", "11:10–12:40", "13:00–14:30",
         "15:00–16:30", "16:40–18:10", "18:30–20:00" };
 }
 
@@ -25,7 +24,7 @@ class TimeTableHandler
         Lesson[] CorrentTimeTable = new Lesson[6];
         foreach (var Pair in PairsInfo)
         {
-            if (isSuitablePlaceForPair(Pair) && Pair.DayOfWeek == InfoStorage.daysOfWeek[Today])
+            if (isSuitablePlaceForLesson(Pair) && Pair.DayOfWeek == InfoStorage.daysOfWeek[Today])
             {
                 CorrentTimeTable[Convert.ToInt32(Pair.LessonNumber)] = Pair;
             }
@@ -33,13 +32,13 @@ class TimeTableHandler
         foreach (Lesson Pair in CorrentTimeTable)
         {
             if(Pair!=null) 
-                StringForUOutput += $"{Pair.Info} {InfoStorage.pairsTime[Convert.ToInt32(Pair.LessonNumber)]}\n";
+                StringForUOutput += $"{Pair.Info} {InfoStorage.LessonsTime[Convert.ToInt32(Pair.LessonNumber)]}({Pair.LessonNumber} Пара)\n";
             
         }
         return StringForUOutput;
 
     }
-    private static bool isSuitablePlaceForPair(ILesson Pair)
+    private static bool isSuitablePlaceForLesson(ILesson Pair)
     {
         for (int i = 1; i < 7; i++)
             if (Pair.LessonNumber == i.ToString()) return true;

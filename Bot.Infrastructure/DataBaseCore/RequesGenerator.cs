@@ -1,6 +1,4 @@
-﻿using System;
-using MySql.Data.MySqlClient;
-    //TODO реализовать базу данных по паттерну стратегия 
+﻿using MySql.Data.MySqlClient;
 namespace Bot.Infrastructure.DataBaseCore.InnerRealisation;
 public sealed class RequestGenerator
 {
