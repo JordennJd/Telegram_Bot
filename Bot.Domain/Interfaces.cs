@@ -38,7 +38,7 @@ namespace Bot.Domain.Interfaces
     {
         public string Info { get; }
         public string DayOfWeek { get; }
-        public string PairNumber { get; }
+        public string LessonNumber { get; }
         public string Modification { get; }
     }
 

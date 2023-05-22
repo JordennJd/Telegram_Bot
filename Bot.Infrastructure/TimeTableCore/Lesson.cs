@@ -7,14 +7,14 @@ namespace TimeTableCore
     {
         public string Info { get; }
         public string DayOfWeek { get; }
-        public string PairNumber { get; }
+        public string LessonNumber { get; }
         public string Modification { get; }
 
-        public Lesson(string info, string dayOfWeek, string pairNumber, string modification)
+        public Lesson(string info, string dayOfWeek, string lessonNumber, string modification)
         {
             Info = info;
             DayOfWeek = dayOfWeek;
-            PairNumber = pairNumber;
+            LessonNumber = lessonNumber;
             Modification = modification;
         }
     }
