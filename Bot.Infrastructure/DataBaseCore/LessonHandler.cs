@@ -11,7 +11,7 @@ internal sealed partial class DataBaseHandler
         RequestGenerator.INSERT(GetStringForINSERT(lesson), "TimeTable(Info,DayOfWeek,PairNumber,Modification)");
     }
 
-    private static string GetStringForINSERT(ILesson lesson = null)
+    private static string GetStringForINSERT(Lesson lesson = null)
     {
         if (lesson != null)
             return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.LessonNumber}','{lesson.Modification}'";
@@ -49,7 +49,7 @@ internal sealed partial class DataBaseHandler
     
     private static string GetStringForINSERT(ILesson lesson)
     {
-        return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.PairNumber}','{lesson.Modification}'";
+        return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.LessonNumber}','{lesson.Modification}'";
     }
 }
 

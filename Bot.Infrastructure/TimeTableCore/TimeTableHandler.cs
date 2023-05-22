@@ -27,13 +27,13 @@ class TimeTableHandler
         {
             if (isSuitablePlaceForPair(Pair) && Pair.DayOfWeek == InfoStorage.daysOfWeek[Today])
             {
-                CorrentTimeTable[Convert.ToInt32(Pair.PairNumber)] = Pair;
+                CorrentTimeTable[Convert.ToInt32(Pair.LessonNumber)] = Pair;
             }
         }
         foreach (Lesson Pair in CorrentTimeTable)
         {
             if(Pair!=null) 
-                StringForUOutput += $"{Pair.Info} {InfoStorage.pairsTime[Convert.ToInt32(Pair.PairNumber)]}\n";
+                StringForUOutput += $"{Pair.Info} {InfoStorage.pairsTime[Convert.ToInt32(Pair.LessonNumber)]}\n";
             
         }
         return StringForUOutput;
@@ -42,7 +42,7 @@ class TimeTableHandler
     private static bool isSuitablePlaceForPair(ILesson Pair)
     {
         for (int i = 1; i < 7; i++)
-            if (Pair.PairNumber == i.ToString()) return true;
+            if (Pair.LessonNumber == i.ToString()) return true;
 
         return false;
     }

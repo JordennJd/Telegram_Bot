@@ -1,8 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Bot.Domain.Entities;
+using Bot.Infrastructure.DataBaseCore.InnerRealisation;
+
 using Bot.Domain.Interfaces;
 
 namespace Bot.Infrastructure.DataBaseCore

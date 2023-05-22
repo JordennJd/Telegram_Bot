@@ -57,7 +57,7 @@ public sealed class RequestGenerator
         while (reader.Read())
         {
             string[] pair = new string[reader.FieldCount];
-            for (int i = 0; i < reader.FieldCount; i++)
+            for (int j = 0; j < reader.FieldCount; j++)
             {
                 string[] Row = new string[reader.FieldCount];
                 for (int i = 0; i < reader.FieldCount; i++)

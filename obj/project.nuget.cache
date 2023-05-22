@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4GIw0AAW0e9YKZO/Sk1FuukuDGc6OLBeko7rxkdac9GLUwikGBv70PrdSYdNPJnD4EpZ1UnB7xVC/qW5lMHPcQ==",
+  "dgSpecHash": "xN01dZwi2pGmtcKCAgO+7I+0koc1VQ4hOgfcBrXdmfVjGJzl+dF4Epf+mdkF3FTdYWW1+D5wAN+dAhXjccM+/g==",
   "success": true,
   "projectFilePath": "/Users/danilalatyrev/ForProjects/Telegram_Bot/Telegram_Bot.csproj",
   "expectedPackageFiles": [
@@ -31,7 +31,7 @@
     "/Users/danilalatyrev/.nuget/packages/system.text.encoding/4.3.0/system.text.encoding.4.3.0.nupkg.sha512",
     "/Users/danilalatyrev/.nuget/packages/system.text.encoding.codepages/4.4.0/system.text.encoding.codepages.4.4.0.nupkg.sha512",
     "/Users/danilalatyrev/.nuget/packages/system.text.encodings.web/7.0.0/system.text.encodings.web.7.0.0.nupkg.sha512",
-    "/Users/danilalatyrev/.nuget/packages/system.text.json/7.0.1/system.text.json.7.0.1.nupkg.sha512",
+    "/Users/danilalatyrev/.nuget/packages/system.text.json/7.0.2/system.text.json.7.0.2.nupkg.sha512",
     "/Users/danilalatyrev/.nuget/packages/system.threading.tasks/4.3.0/system.threading.tasks.4.3.0.nupkg.sha512",
     "/Users/danilalatyrev/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512",
     "/Users/danilalatyrev/.nuget/packages/system.windows.extensions/4.7.0/system.windows.extensions.4.7.0.nupkg.sha512",
