@@ -14,23 +14,22 @@ class InfoStorage
 
 class TimeTableHandler
 {
-    public static string GetCorrentTimeTable()
+    public static string GetCorrentTimeTable(List<Lesson> Lessons)
     {
-        List<Lesson> Lessons = DataBaseHandler.GetAllPairs();
         return BuildTimeTable(Lessons);
     }
 
     private static string BuildTimeTable(List<Lesson> Lessons)
     {
-        string CorrentTimeTable = daysOfWeek[(int)DateTime.Now.DayOfWeek] + "\n\n";
+        string StringForOutput = InfoStorage.daysOfWeek[(int)DateTime.Now.DayOfWeek] + "\n\n";
 
         Lessons = GetSortedLessonList(Lessons);
         
         foreach (Lesson lesson in Lessons)
         {
-            if(lesson!=null) CorrentTimeTable += $"{lesson.Info} {LessonsTime[Convert.ToInt32(lesson.LessonNumber)]}({lesson.LessonNumber} Пара) \n";
+            if(lesson!=null) StringForOutput += $"{lesson.Info} {InfoStorage.LessonsTime[Convert.ToInt32(lesson.LessonNumber)]}({lesson.LessonNumber} Пара) \n";
         }
-        return StringForUOutput;
+        return StringForOutput;
 
     }
 
@@ -41,7 +40,7 @@ class TimeTableHandler
         foreach (var lesson in lessons)
         {
             
-            if (isSuitablePlaceForPair(lesson) && lesson.DayOfWeek == daysOfWeek[(int)DateTime.Now.DayOfWeek])
+            if (isSuitablePlaceForPair(lesson) && lesson.DayOfWeek == InfoStorage.daysOfWeek[(int)DateTime.Now.DayOfWeek])
             {
                 sortedLessons.Insert(Convert.ToInt32(lesson.LessonNumber),lesson);
             }
@@ -50,7 +49,7 @@ class TimeTableHandler
         return sortedLessons;
     }
 
-    private static bool isSuitablePlaceForPair(Lesson Lesson)
+    private static bool isSuitablePlaceForPair(ILesson Lesson)
     {
         for (int i = 1; i < 8; i++)
             if (Lesson.LessonNumber == i.ToString()) return true;
@@ -59,37 +58,7 @@ class TimeTableHandler
     }
 }
 
-class InputCheker 
-{
-    
-    public static bool isInputCorrect(string input, int Case)
-    {
-        switch (Case)
-        {
-            case(1):
-                return input.Length > 3;
-            
-            case(2):
-                return InfoStorage.daysOfWeek.Contains(input);
-            
-            case(3):
-                try
-                {
-                    int Input = Convert.ToInt32(input);
-                    return (Input >= 1 & Input <= 6);
-                }
-                catch
-                {
-                    return false;
-                }
-                    
-            case(4):
-                return input.Contains("all") || input.Contains("red") || input.Contains("blue");
-        }
 
-        return false;
-    }
-}
                 
 
 

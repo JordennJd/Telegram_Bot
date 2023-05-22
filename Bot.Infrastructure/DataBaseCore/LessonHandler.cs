@@ -10,14 +10,7 @@ internal sealed partial class DataBaseHandler
     {
         RequestGenerator.INSERT(GetStringForINSERT(lesson), "TimeTable(Info,DayOfWeek,PairNumber,Modification)");
     }
-
-    private static string GetStringForINSERT(Lesson lesson = null)
-    {
-        if (lesson != null)
-            return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.LessonNumber}','{lesson.Modification}'";
-
-        return null;
-    }
+    
     public static bool IsLessonExist(ILesson lesson)
     {
         bool isExist = RequestGenerator.SELECT("Info", "TimeTable",

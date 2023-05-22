@@ -54,17 +54,12 @@ public sealed class RequestGenerator
         List<string[]> values = new List<string[]>();
         while (reader.Read())
         {
-            string[] pair = new string[reader.FieldCount];
-            for (int j = 0; j < reader.FieldCount; j++)
+            string[] Row = new string[reader.FieldCount];
+            for (int i = 0; i < reader.FieldCount; i++)
             {
-                string[] Row = new string[reader.FieldCount];
-                for (int i = 0; i < reader.FieldCount; i++)
-                {
-                    Row[i] = reader[i].ToString();
-                }
-                values.Add(Row);
+                Row[i] = reader[i].ToString();
             }
-            values.Add(pair);
+            values.Add(Row);
         }
         return values;
     }

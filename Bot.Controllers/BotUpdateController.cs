@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 using Bot.Domain.Entities;
 using Bot.MessageExchange.Imperative;
 using Bot.Domain.Interfaces;
@@ -57,7 +52,7 @@ static class BotUpdateController
             CoreUser coreUser;
             //id==1202179202 || 1047654455
             Predicate<long> isAdmin = (long id) =>  id==1047654455;
-
+            
             if(DataBaseHandler.IsUserInDB(update.Message.User)){
                 coreUser = new CoreUser(update.Message.User.Id, DataBaseHandler.GetUserName(update.Message.User), DataBaseHandler.GetUserRole(update.Message.User));
             }else{
@@ -140,14 +135,14 @@ static class BotUpdateController
         string Info = await Input.RequestMessageReceiving(e.update.Message.Chat);
         do
         {
-            if (!InputCheker.isInputCorrect(Info, 1))
+            if (!InputCheker.isInputCorrectAddLesson(Info, 1))
             {
                 await Output.RequestMessageSending(e.update.Message.Chat,
                     "Длина информации о предмете должна состовлять больше 3 символов",ButtonsButton: null);
                 Info = await Input.RequestMessageReceiving(e.update.Message.Chat);
 
             }
-        } while (!InputCheker.isInputCorrect(Info,1));
+        } while (!InputCheker.isInputCorrectAddLesson(Info,1));
         
         await Output.RequestMessageSending(e.update.Message.Chat,
             "Напишите номер дня недели(1-7)",
@@ -155,14 +150,14 @@ static class BotUpdateController
         string DayOfWeek = await Input.RequestMessageReceiving(e.update.Message.Chat);
         do
         {
-            if (!InputCheker.isInputCorrect(DayOfWeek, 2))
+            if (!InputCheker.isInputCorrectAddLesson(DayOfWeek, 2))
             {
                 await Output.RequestMessageSending(e.update.Message.Chat,
                     "Выбирите день недели из предложенных вариантов",new string[][] { new string[] { "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота" } });
                 DayOfWeek = await Input.RequestMessageReceiving(e.update.Message.Chat);
 
             }
-        } while (!InputCheker.isInputCorrect(DayOfWeek,2));
+        } while (!InputCheker.isInputCorrectAddLesson(DayOfWeek,2));
         //Функция проверки дня недели
         await Output.RequestMessageSending(e.update.Message.Chat,
             "Напишите номер пары(1-6)", 
@@ -170,14 +165,14 @@ static class BotUpdateController
         string PairNumber = await Input.RequestMessageReceiving(e.update.Message.Chat);
         do
         {
-            if (!InputCheker.isInputCorrect(PairNumber, 3))
+            if (!InputCheker.isInputCorrectAddLesson(PairNumber, 3))
             {
                 await Output.RequestMessageSending(e.update.Message.Chat,
                     "Выбирите число от 1 до 6",new string[][] { new string[] { "1", "2", "3", "4", "5", "6" } });
                 PairNumber = await Input.RequestMessageReceiving(e.update.Message.Chat);
 
             }
-        } while (!InputCheker.isInputCorrect(PairNumber,3));
+        } while (!InputCheker.isInputCorrectAddLesson(PairNumber,3));
         //Функция проверки номера пары
         await Output.RequestMessageSending(e.update.Message.Chat,
             "Выбирите модификацию пары", 
@@ -185,19 +180,19 @@ static class BotUpdateController
         string Modification = await Input.RequestMessageReceiving(e.update.Message.Chat);
         do
         {
-            if (!InputCheker.isInputCorrect(Modification, 4))
+            if (!InputCheker.isInputCorrectAddLesson(Modification, 4))
             {
                 await Output.RequestMessageSending(e.update.Message.Chat,
                     "Выбирите из предложенных выриантов",new string[][] { new string[] { "all", "red", "blue" } });
                 Modification = await Input.RequestMessageReceiving(e.update.Message.Chat);
 
             }
-        } while (!InputCheker.isInputCorrect(Modification,4));
+        } while (!InputCheker.isInputCorrectAddLesson(Modification,4));
         Lesson lesson = new Lesson(Info, DayOfWeek, PairNumber, Modification);
         
-        if (!Bot.Infrastructure.DataBaseCore.DataBaseHandler.IsLessonExist(lesson))
+        if (!DataBaseHandler.IsLessonExist(lesson))
         {
-            Bot.Infrastructure.DataBaseCore.DataBaseHandler.AddLesson(lesson);
+            DataBaseHandler.AddLesson(lesson);
             await Output.RequestMessageSending(e.update.Message.Chat, "Предмет добавлен",
                 ButtonsButton: e.update.Message.Chat.Buttons);
         }
@@ -211,8 +206,8 @@ static class BotUpdateController
             
             if (answer == "Да")
             {
-                Bot.Infrastructure.DataBaseCore.DataBaseHandler.DeleteLesson(lesson);
-                Bot.Infrastructure.DataBaseCore.DataBaseHandler.AddLesson(lesson);
+                DataBaseHandler.DeleteLesson(lesson);
+                DataBaseHandler.AddLesson(lesson);
                 await Output.RequestMessageSending(e.update.Message.Chat, "Предмет заменен",
                     ButtonsButton: e.update.Message.Chat.Buttons);
             }
@@ -224,6 +219,36 @@ static class BotUpdateController
             }
         }
     }
+    class InputCheker 
+    {
+    
+        public static bool isInputCorrectAddLesson(string input, int Case)
+        {
+            switch (Case)
+            {
+                case(1):
+                    return input.Length > 3;
+            
+                case(2):
+                    return InfoStorage.daysOfWeek.Contains(input);
+            
+                case(3):
+                    try
+                    {
+                        int Input = Convert.ToInt32(input);
+                        return (Input >= 1 & Input <= 6);
+                    }
+                    catch
+                    {
+                        return false;
+                    }
+                    
+                case(4):
+                    return input.Contains("all") || input.Contains("red") || input.Contains("blue");
+            }
 
+            return false;
+        }
+    }
 }
 

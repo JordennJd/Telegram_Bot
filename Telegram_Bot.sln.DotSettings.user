@@ -7,7 +7,17 @@
   &lt;PhysicalFolder Path="/Users/danilalatyrev/.nuget/packages/xunit.microsoft.visualstudio.testtools.unittesting/1.0.0-beta-1011" Loaded="True" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
 	<s:Boolean x:Key="/Default/Environment/InlayHints/GeneralInlayHintsOptions/EnableInlayHints/@EntryValue">False</s:Boolean>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=22546c15_002Df7df_002D40f7_002D9e9a_002D08116844c097/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="GetCorrentTimeTable_CheckOut_Output" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=22546c15_002Df7df_002D40f7_002D9e9a_002D08116844c097/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="GetCorrentTimeTable_CheckOut_Output" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::E2828E3D-3A28-4021-BD3E-8CC429D155D8::net7.0::TimeTableTest.TimeTableTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2dad8dd0_002D3ba9_002D462f_002Dbaf4_002D52237d8625ce/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TimeTableTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;MSTest::E2828E3D-3A28-4021-BD3E-8CC429D155D8::net7.0::TimeTableTest.TimeTableTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=69e95475_002D8a4d_002D4fa5_002D9f71_002D6cc5a04726f8/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TimeTableTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;MSTest::E2828E3D-3A28-4021-BD3E-8CC429D155D8::net7.0::TimeTableTest.TimeTableTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
