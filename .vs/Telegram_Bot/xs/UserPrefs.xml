@@ -14,7 +14,7 @@
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Telegram_Bot" expanded="True" selected="True" />
+          <Node name="Telegram_Bot" expanded="True" />
         </State>
       </Pad>
     </Pads>

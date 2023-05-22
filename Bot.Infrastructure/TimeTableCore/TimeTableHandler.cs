@@ -17,7 +17,7 @@ class TimeTableHandler
 
     public static string GetCorrentTimeTable(List<Lesson> lessons)
     {
-        int Today = (int)DateTime.Now.DayOfWeek+6; //Получение текущей даты
+        int Today = (int)DateTime.Now.DayOfWeek; //Получение текущей даты
         List<Lesson> PairsInfo = lessons;
         
         string StringForUOutput = InfoStorage.daysOfWeek[Today] + "\n\n";

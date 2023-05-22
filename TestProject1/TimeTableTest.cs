@@ -9,7 +9,7 @@ public class TimeTableTest
     [TestInitialize]
     public void TimeTableTestInit()
     {
-        int Today = (int)DateTime.Now.DayOfWeek+6;
+        int Today = (int)DateTime.Now.DayOfWeek;
         day = InfoStorage.daysOfWeek[Today];
         Lesson Math = new Lesson("Math", day, "5", "all");
         Lesson Philo = new Lesson("Philo", day, "1", "all");
