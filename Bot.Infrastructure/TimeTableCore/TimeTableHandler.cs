@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using Bot.Domain.Interfaces;
+using Bot.Infrastructure.DataBaseCore;
 
 [assembly: InternalsVisibleTo("TestProject1")]
 namespace TimeTableCore;
@@ -13,35 +14,46 @@ class InfoStorage
 
 class TimeTableHandler
 {
-
-
-    public static string GetCorrentTimeTable(List<Lesson> lessons)
+    public static string GetCorrentTimeTable()
     {
-        int Today = (int)DateTime.Now.DayOfWeek; //Получение текущей даты
-        List<Lesson> PairsInfo = lessons;
+        List<Lesson> Lessons = DataBaseHandler.GetAllPairs();
+        return BuildTimeTable(Lessons);
+    }
+
+    private static string BuildTimeTable(List<Lesson> Lessons)
+    {
+        string CorrentTimeTable = daysOfWeek[(int)DateTime.Now.DayOfWeek] + "\n\n";
+
+        Lessons = GetSortedLessonList(Lessons);
         
-        string StringForUOutput = InfoStorage.daysOfWeek[Today] + "\n\n";
-        Lesson[] CorrentTimeTable = new Lesson[6];
-        foreach (var Pair in PairsInfo)
+        foreach (Lesson lesson in Lessons)
         {
-            if (isSuitablePlaceForLesson(Pair) && Pair.DayOfWeek == InfoStorage.daysOfWeek[Today])
-            {
-                CorrentTimeTable[Convert.ToInt32(Pair.LessonNumber)] = Pair;
-            }
-        }
-        foreach (Lesson Pair in CorrentTimeTable)
-        {
-            if(Pair!=null) 
-                StringForUOutput += $"{Pair.Info} {InfoStorage.LessonsTime[Convert.ToInt32(Pair.LessonNumber)]}({Pair.LessonNumber} Пара)\n";
-            
+            if(lesson!=null) CorrentTimeTable += $"{lesson.Info} {LessonsTime[Convert.ToInt32(lesson.LessonNumber)]}({lesson.LessonNumber} Пара) \n";
         }
         return StringForUOutput;
 
     }
-    private static bool isSuitablePlaceForLesson(ILesson Pair)
+
+    private static List<Lesson> GetSortedLessonList(List<Lesson> lessons)
     {
-        for (int i = 1; i < 7; i++)
-            if (Pair.LessonNumber == i.ToString()) return true;
+        List<Lesson> sortedLessons = new List<Lesson>(6){null,null,null,null,null,null};
+
+        foreach (var lesson in lessons)
+        {
+            
+            if (isSuitablePlaceForPair(lesson) && lesson.DayOfWeek == daysOfWeek[(int)DateTime.Now.DayOfWeek])
+            {
+                sortedLessons.Insert(Convert.ToInt32(lesson.LessonNumber),lesson);
+            }
+        }
+
+        return sortedLessons;
+    }
+
+    private static bool isSuitablePlaceForPair(Lesson Lesson)
+    {
+        for (int i = 1; i < 8; i++)
+            if (Lesson.LessonNumber == i.ToString()) return true;
 
         return false;
     }
