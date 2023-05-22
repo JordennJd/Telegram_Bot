@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{F6127389-34A1-4EEB-85E0-183CC9AAE07D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="TestProject1/UnitTest1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="TestProject1/Usings.cs">
     <Files>
       <File FileName="Bot.Infrastructure/TimeTableCore/TimeTableHandler.cs" />
       <File FileName="Bot.Infrastructure/TimeTableCore/Lesson.cs" />
@@ -8,7 +8,6 @@
       <File FileName="Bot.Domain/Entities/Button.cs" />
       <File FileName="Bot.Domain/Entities/ForFunctionEventArgs.cs" />
       <File FileName="Program.cs" />
-      <File FileName="TestProject1/UnitTest1.cs" Line="22" Column="85" />
       <File FileName="TestProject1/Usings.cs" Line="1" Column="1" />
     </Files>
     <Pads>

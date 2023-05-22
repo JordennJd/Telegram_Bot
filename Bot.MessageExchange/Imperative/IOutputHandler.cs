@@ -13,7 +13,7 @@ namespace Bot.MessageExchange.Imperative
         /// Чтобы удалить клавиатуру задайте в параметр функции ButtonsButton: null
         /// </summary> 
         public Task RequestMessageSending(Chat chat, string messageName, IEnumerable<IEnumerable<string>> ButtonsString = null);
-        public Task RequestMessageSending(Chat chat, string messageName, IEnumerable<IEnumerable<Button>> ButtonsButton);
+        public Task RequestMessageSending(Chat chat, string messageName, Buttons ButtonsButton);
         
     }
 }

@@ -40,7 +40,7 @@ public partial class TelegramMessageExchangeManager
             } 
         }
 
-        public async Task RequestMessageSending(Chat chat, string str, IEnumerable<IEnumerable<Button>> buttons)
+        public async Task RequestMessageSending(Chat chat, string str, Buttons buttons)
         {
             if(buttons == null)
                 await botClient.SendTextMessageAsync(chat.Id,str, replyMarkup: new ReplyKeyboardRemove());
@@ -48,7 +48,7 @@ public partial class TelegramMessageExchangeManager
             else
             {
                 List<List<KeyboardButton>> telegramButtons= new List<List<KeyboardButton>>();
-                foreach(Button[] butrow in buttons)
+                foreach(IEnumerable<Button> butrow in buttons.buttons)
                 {
                     List<KeyboardButton> telegramButtonsRow = new List<KeyboardButton>();
 

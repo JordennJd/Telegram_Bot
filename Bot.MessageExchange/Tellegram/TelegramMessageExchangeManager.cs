@@ -46,7 +46,7 @@ public partial class TelegramMessageExchangeManager : IMessageExchangeManager
     private class TelegramUser : User
     {
         public override long Id{get;}
-        public override string FirstName{get; set;}
+        public override string FirstName{get; protected set;}
         public TelegramUser(Telegram.Bot.Types.User user){
             Id=user.Id;
             FirstName = user.FirstName;
@@ -125,7 +125,7 @@ public partial class TelegramMessageExchangeManager : IMessageExchangeManager
         if(update.Message!= null && update.Message.Text!= null)
             if(_inputHandler.FindChatAndSetEventWait(new TelegramChat(update.Message.Chat), update.Message.Text))
                 return;
-     
+
         UpdateEvent?.Invoke(new TelegramUpdate(update)); 
     }
 

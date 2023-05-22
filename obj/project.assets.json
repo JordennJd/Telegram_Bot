@@ -459,7 +459,7 @@
           }
         }
       },
-      "System.Text.Json/7.0.1": {
+      "System.Text.Json/7.0.2": {
         "type": "package",
         "dependencies": {
           "System.Text.Encodings.Web": "7.0.0"
@@ -1561,10 +1561,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/7.0.1": {
-      "sha512": "OtDEmCCiNl8JAduFKZ/r0Sw6XZNHwIicUYy/mXgMDGeOsZLshH37qi3oPRzFYiryVktiMoQLByMGPtRCEMYbeQ==",
+    "System.Text.Json/7.0.2": {
+      "sha512": "/LZf/JrGyilojqwpaywb+sSz8Tew7ij4K/Sk+UW8AKfAK7KRhR6mKpKtTm06cYA7bCpGTWfYksIW+mVsdxPegQ==",
       "type": "package",
-      "path": "system.text.json/7.0.1",
+      "path": "system.text.json/7.0.2",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1627,7 +1627,7 @@
         "lib/net7.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.7.0.1.nupkg.sha512",
+        "system.text.json.7.0.2.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -1780,6 +1780,7 @@
   "projectFileDependencyGroups": {
     "net7.0": [
       "MySql.Data >= 8.0.33",
+      "System.Text.Json >= 7.0.2",
       "Telegram.Bot >= 18.0.0"
     ]
   },
@@ -1824,6 +1825,10 @@
           "MySql.Data": {
             "target": "Package",
             "version": "[8.0.33, )"
+          },
+          "System.Text.Json": {
+            "target": "Package",
+            "version": "[7.0.2, )"
           },
           "Telegram.Bot": {
             "target": "Package",
