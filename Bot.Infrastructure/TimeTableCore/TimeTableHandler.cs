@@ -1,5 +1,6 @@
 using System.Runtime.CompilerServices;
 using Bot.Domain.Interfaces;
+using Bot.Infrastructure.DataBaseCore;
 
 [assembly: InternalsVisibleTo("TestProject1")]
 namespace TimeTableCore;

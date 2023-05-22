@@ -10,17 +10,24 @@ internal sealed partial class DataBaseHandler
     {
         RequestGenerator.INSERT(GetStringForINSERT(lesson), "TimeTable(Info,DayOfWeek,PairNumber,Modification)");
     }
-    
+
+    private static string GetStringForINSERT(ILesson lesson = null)
+    {
+        if (lesson != null)
+            return $"'{lesson.Info}','{lesson.DayOfWeek}','{lesson.LessonNumber}','{lesson.Modification}'";
+
+        return null;
+    }
     public static bool IsLessonExist(ILesson lesson)
     {
         bool isExist = RequestGenerator.SELECT("Info", "TimeTable",
-            $"WHERE DayOfWeek = '{lesson.DayOfWeek}' AND PairNumber = '{lesson.PairNumber}' AND Modification = '{lesson.Modification}'").Count != 0;
+            $"WHERE DayOfWeek = '{lesson.DayOfWeek}' AND PairNumber = '{lesson.LessonNumber}' AND Modification = '{lesson.Modification}'").Count != 0;
         return isExist;
     }
 
     public static void DeleteLesson(ILesson lesson)
     {
-        RequestGenerator.DELETE($"DayOfWeek = '{lesson.DayOfWeek}' AND PairNumber = '{lesson.PairNumber}' " +
+        RequestGenerator.DELETE($"DayOfWeek = '{lesson.DayOfWeek}' AND PairNumber = '{lesson.LessonNumber}' " +
             $"AND Modification = '{lesson.Modification}'", "TimeTable");
     }
 

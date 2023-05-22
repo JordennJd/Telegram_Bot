@@ -1,32 +1,44 @@
 using Bot.Infrastructure.DataBaseCore.InnerRealisation;
 using Bot.Domain.Interfaces;
+using Bot.Domain.Entities;
 
 namespace Bot.Infrastructure.DataBaseCore;
 
 internal sealed partial class DataBaseHandler
 {
-    public static void AddUser(User user)
+    public static void AddUser(CoreUser user)
     {
-        if (!IsUserInDB(user))
-        {
-            RequestGenerator.INSERT(GetStringForINSERT(user), "users(id, name)");
-        }
+            RequestGenerator.INSERT(GetStringForINSERT(user), "users(id, name, role)");
+    }
+    public static void UpdateUser(CoreUser user){
+        RequestGenerator.UPDATE($"name = '{user.FirstName}', role = '{user.Role}'","users", $"id = '{user.Id}'");
     }
     
     public static string GetUserRole(User user)
     {
         return RequestGenerator.SELECT("role", "users", $"WHERE id = '{user.Id}'")[0][0];
     }
-
-    //TODO Нужно реализовать изменение информации о пользователях в БД
-    private static string GetStringForINSERT(User user)
+     public static string GetUserName(User user)
     {
-        return $"{user.Id},'{user.FirstName}'";
+        return RequestGenerator.SELECT("name", "users", $"WHERE id = '{user.Id}'")[0][0];
     }
 
-    private static bool IsUserInDB(User user)
+    //TODO Нужно реализовать изменение информации о пользователях в БД
+    private static string GetStringForINSERT(CoreUser user)
     {
-        return RequestGenerator.SELECT("id", "users")[0][0].Contains(user.Id.ToString());
+        if (user != null)
+            return $"{user.Id},'{user.FirstName}','{user.Role}'";
+
+        return null;
+    }
+
+    public static bool IsUserInDB(User user)
+    {
+        List<string [] > request = RequestGenerator.SELECT("id", "users");
+        if(request.Count == 0){
+            return false;
+        }
+        else return request[0][0].Contains(user.Id.ToString()); 
     }
 
 }
