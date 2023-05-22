@@ -48,7 +48,7 @@ public partial class TelegramMessageExchangeManager
             else
             {
                 List<List<KeyboardButton>> telegramButtons= new List<List<KeyboardButton>>();
-                foreach(IEnumerable<Button> butrow in buttons.buttons)
+                foreach(IEnumerable<Button> butrow in buttons)
                 {
                     List<KeyboardButton> telegramButtonsRow = new List<KeyboardButton>();
 
