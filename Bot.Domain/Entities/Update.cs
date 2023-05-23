@@ -12,7 +12,7 @@ namespace Bot.Domain.Entities
         public string RoleInUser{get;}
         public Buttons ButtonsInChat {get;}
 
-        public ChangesArgsForCoreUpdate(string RoleInUser, Buttons ButtonsInChat){
+        public ChangesArgsForCoreUpdate(string RoleInUser=null, Buttons ButtonsInChat = null){
             this.RoleInUser= RoleInUser;
             this.ButtonsInChat = ButtonsInChat;
         }
@@ -101,11 +101,13 @@ namespace Bot.Domain.Entities
             Directory ="";
             setDirectory(args.ButtonsInChat);
         }
-        public CoreChat(Chat chat, string directory , Buttons functions){
-            Id = chat.Id;
-            Title = chat.Title;
-            Directory=directory;
-            ChangeButtons(directory, functions);
+        public static CoreChat CreateInstance(Chat chat, string directory , List<functionForPushButton> functions){
+            Buttons buttons = directoryToButtons(directory, functions);
+            if(buttons != null)
+                return new CoreChat(chat, new ChangesArgsForCoreUpdate(null, buttons));
+            else 
+                return null;
+            
         }
         public void ChangeButtons(Buttons buttons){
             Buttons = buttons;
@@ -113,7 +115,7 @@ namespace Bot.Domain.Entities
         }
         private void setDirectory(Buttons buttons){
             Directory ="";
-            foreach(IEnumerable<Button> rowButtons in Buttons.buttons){
+            foreach(IEnumerable<Button> rowButtons in buttons){
                 foreach(Button button in rowButtons){
                     Directory+= $"{button.Text}&{button.functionForPushButton.Method.Name}|";
                 }
@@ -121,7 +123,7 @@ namespace Bot.Domain.Entities
             }
         }
 
-        private bool ChangeButtons(string directory, Buttons functions){
+        private static Buttons directoryToButtons(string directory, List<functionForPushButton> functions){
             string[] rowsStrButtons = directory.Split("||");
             List<List<Button>> buttons = new List<List<Button>>();
             foreach(string rowStrButtons in rowsStrButtons){
@@ -132,18 +134,18 @@ namespace Bot.Domain.Entities
                 foreach(string strButton in strButtons){
                     string [] strButtonArgs = strButton.Split("&");
                     if(strButtonArgs.Count()>1){
-                        Button button = functions.FindButtonForFunction(strButtonArgs[1]);
-                        if(button!=null)
-                            rowButtons.Add(new Button(strButtonArgs[0], button.functionForPushButton));
-                        else return false;
+                        functionForPushButton function = functions.Find((function)=> function.Method.Name== strButtonArgs[1]);
+                        if(function!=null)
+                            rowButtons.Add(new Button(strButtonArgs[0], function));
+                        else return null;
+
                     }
                     
                 }
                 if(rowButtons.Count>0)
                     buttons.Add(rowButtons);
             }
-            Buttons = new Buttons(buttons);
-            return true;
+            return new Buttons{buttons};
         }
 
     }

@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Timers;
 using System.Collections.Concurrent;
 using Bot.Infrastructure.DataBaseCore;
+using Bot.Domain.Entities;
 
 namespace Bot.Domain.Entities;
 
@@ -39,34 +40,20 @@ class Sessia
 //Одновременные сессии
 class Sessias
 {
-    private ConcurrentDictionary<long, Sessia> sessias;
-    private List<Buttons> AllButtonsInControllers;
+    private ConcurrentDictionary<long, Sessia> sessias= new ConcurrentDictionary<long, Sessia>();
+    private List<functionForPushButton> AllFunctionsInControllers  = new List<functionForPushButton>();
 
-    public Sessias(){
-        sessias = new ConcurrentDictionary<long, Sessia>();
-        AllButtonsInControllers = new List<Buttons>();
+    public functionForPushButton FindFunctionInAllForText(string TextFunction){
+       return AllFunctionsInControllers.Find((function)=> function.Method.Name == TextFunction);
     }
-
-    public void AddButtonInListAllButtons(Buttons buttons){
-        AllButtonsInControllers.Add(buttons);
-    }
-    public Button FindButtonInAllForText(string textButtons){
-        foreach(Buttons buttons in AllButtonsInControllers){
-            Button returnButton = buttons.FindButtonForText(textButtons);
-            if(returnButton != null){
-                return returnButton;
+    private void addFunctionsInAll(Buttons buttons){
+        foreach(IEnumerable<Button> rowButtons in buttons){
+            foreach(Button button in rowButtons ){
+                if(FindFunctionInAllForText(button.Text)==null){
+                    AllFunctionsInControllers.Add(button.functionForPushButton);
+                }
             }
         }
-        return null;
-    }
-    public Button FindButtonInAllForFunction(string TextFunction){
-        foreach(Buttons buttons in AllButtonsInControllers){
-            Button returnButton = buttons.FindButtonForFunction(TextFunction);
-            if(returnButton != null){
-                return returnButton;
-            }
-        }
-        return null;
     }
     public Sessia GetSessiaAtUserId(long userId)
     {//Получение сессии
@@ -75,9 +62,9 @@ class Sessias
         return getSessia;
     }
 
-    public Sessia GetOrAddSessia(long Id, Func<(CoreUser, CoreChat)> argFunc){
+    public Sessia GetOrAddSessia(long Id, Func<List<functionForPushButton>, (CoreUser, CoreChat)> argFunc){
         return sessias.GetOrAdd(Id, (id) => {
-                (CoreUser, CoreChat) cortegArg = argFunc();
+                (CoreUser, CoreChat) cortegArg = argFunc(AllFunctionsInControllers);
                 return new Sessia(cortegArg.Item1, cortegArg.Item2, StopSessiaAtTimer);
             });
     }
@@ -98,5 +85,7 @@ class Sessias
         Console.WriteLine($"End Sesisa: {DelSessia.User.FirstName}");
         DataBaseHandler.UpdateUser(DelSessia.User);
         ChatHandler.UpdateChat(DelSessia.Chat);
+        addFunctionsInAll(DelSessia.Chat.Buttons);
+        
     }
 }

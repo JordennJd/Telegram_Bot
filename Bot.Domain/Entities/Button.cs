@@ -1,3 +1,10 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+
 namespace Bot.Domain.Entities
 {
     public delegate Task functionForPushButton(object sender, ForFunctionEventArgs e);
@@ -18,11 +25,22 @@ namespace Bot.Domain.Entities
         }
     }
 
-    public class Buttons{
-        public IEnumerable<IEnumerable<Button>> buttons{get;}
-        public Buttons(IEnumerable<IEnumerable<Button>> buttons){
-            this.buttons = buttons;
+    public class Buttons : IEnumerable<IEnumerable<Button>>{
+        private List<List<Button>> buttons =  new List<List<Button>>();
+
+        public IEnumerator<IEnumerable<Button>> GetEnumerator() => buttons.GetEnumerator();
+
+        IEnumerator IEnumerable.GetEnumerator() => buttons.GetEnumerator();
+
+        public void Add(IEnumerable<Button> rowButtons){
+            buttons.Add(new List<Button>(rowButtons));
         }
+        public void Add(IEnumerable<IEnumerable<Button>> buttons){
+            foreach(IEnumerable<Button> rowButtons in buttons){
+                this.Add(rowButtons);
+            }
+        }
+
         public Button FindButtonForText(string TextButton){
             foreach(IEnumerable<Button> rowButton in this.buttons){
                 foreach(Button button in rowButton){
@@ -41,5 +59,9 @@ namespace Bot.Domain.Entities
             }
             return null;
         }
+
+      
+
+        
     }
 }
