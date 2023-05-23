@@ -73,12 +73,12 @@ static class BotUpdateController
                         new Button[] { new Button("/start", Start) },
                         new Button[] { new Button("Расписание на сегодня", GetTimeTable)},
                         new Button[] { new Button("Настройки", Settings)}
-                    }));
+                    });
                 else{
                     args = new ChangesArgsForCoreUpdate(ButtonsInChat: new Buttons{
                         new Button[] { new Button("/start", Start) },
                         new Button[] { new Button("Расписание на сегодня", GetTimeTable)}
-                        }));
+                        });
                     
                 }
                 coreChat = new CoreChat(update.Message.Chat, args);  
@@ -95,9 +95,9 @@ static class BotUpdateController
 
     public static async Task Settings(object sender, ForFunctionEventArgs e)
     {
-        Buttons settings = new Buttons(new Button[][]{new Button[]
+        Buttons settings = new Buttons{new Button[]
             {new Button("Кнопка в меню",ButtonOnMenu),new Button("Добавить новый предмет/изменить старый",AddLesson),
-                new Button("Удалить пару из расписания",DeleteLesson)}});
+                new Button("Удалить пару из расписания",DeleteLesson)}};
         e.update.Message.Chat.ChangeButtons(settings);
 
         await Output.RequestMessageSending(e.update.Message.Chat, "Настройки", settings);
