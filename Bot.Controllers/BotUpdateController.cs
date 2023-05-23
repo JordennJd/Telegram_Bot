@@ -68,7 +68,10 @@ static class BotUpdateController
             
             if(ChatHandler.IsChatInDB(update.Message.Chat)){
                 coreChat = new CoreChat(update.Message.Chat, ChatHandler.GetChatDirectory(update.Message.Chat), AllButtonsInController);
-            }else{
+            }
+            
+            else
+            {
                 ChangesArgsForCoreUpdate args;
                 if(isAdmin(update.Message.User.Id))
                     args = new ChangesArgsForCoreUpdate(null, new Buttons(new Button[][]{
@@ -95,7 +98,9 @@ static class BotUpdateController
 
     public static async Task Settings(object sender, ForFunctionEventArgs e)
     {
-        Buttons settings = new Buttons(new Button[][]{new Button[]{new Button("Кнопка в меню",ButtonOnMenu),new Button("Добавить новый предмет/изменить старый",AddLesson),new Button("Удалить пару из расписания",DeleteLesson)}});
+        Buttons settings = new Buttons(new Button[][]{new Button[]
+            {new Button("Кнопка в меню",ButtonOnMenu),new Button("Добавить новый предмет/изменить старый",AddLesson),
+                new Button("Удалить пару из расписания",DeleteLesson)}});
         e.update.Message.Chat.ChangeButtons(settings);
 
         await Output.RequestMessageSending(e.update.Message.Chat, "Настройки", settings);
