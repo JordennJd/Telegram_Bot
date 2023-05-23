@@ -35,18 +35,18 @@ class TimeTableHandler
 
     private static List<Lesson> GetSortedLessonList(List<Lesson> lessons)
     {
-        List<Lesson> sortedLessons = new List<Lesson>(6){null,null,null,null,null,null};
+        Lesson[] sortedLessons = new Lesson[7];
 
         foreach (var lesson in lessons)
         {
             
             if (isSuitablePlaceForPair(lesson) && lesson.DayOfWeek == InfoStorage.daysOfWeek[(int)DateTime.Now.DayOfWeek])
             {
-                sortedLessons.Insert(Convert.ToInt32(lesson.LessonNumber),lesson);
+                sortedLessons[Convert.ToInt32(lesson.LessonNumber)] = lesson;
             }
         }
 
-        return sortedLessons;
+        return sortedLessons.ToList();
     }
 
     private static bool isSuitablePlaceForPair(ILesson Lesson)
