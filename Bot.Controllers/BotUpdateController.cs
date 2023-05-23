@@ -29,6 +29,7 @@ static class BotUpdateController
                 new Button[] { new Button("/start", Start) },
                 new Button[] { new Button("Новый Предмет", AddLesson) , new Button("Расписание на сегодня", GetTimeTable)},
                 new Button[] { new Button("d", ButtonOnMenu) },
+                new Button[] { new Button("d", Settings) },
                 new Button[] { new Button("d", MenuTest) },
         });
         
@@ -73,13 +74,12 @@ static class BotUpdateController
                     args = new ChangesArgsForCoreUpdate(null, new Buttons(new Button[][]{
                         new Button[] { new Button("/start", Start) },
                         new Button[] { new Button("Новый Предмет", AddLesson) , new Button("Расписание на сегодня", GetTimeTable)},
-                        new Button[] { new Button("MenuTest", MenuTest) }
+                        new Button[] { new Button("Настройки", Settings)}
                     }));
                 else{
                     args = new ChangesArgsForCoreUpdate(null, new Buttons(new Button[][]{
                         new Button[] { new Button("/start", Start) },
-                        new Button[] { new Button("Расписание на сегодня", GetTimeTable)},
-                        new Button[] { new Button("MenuTest", MenuTest) }
+                        new Button[] { new Button("Расписание на сегодня", GetTimeTable)}
                         }));
                     
                 }
@@ -100,15 +100,23 @@ static class BotUpdateController
         await Output.RequestMessageSending(e.update.Message.Chat, "Менюшка", menu);
 
     }
+    public static async Task Settings(object sender, ForFunctionEventArgs e)
+    {
+        Buttons menu = new Buttons(new Button[][]{new Button[]{new Button("Кнопка в меню",ButtonOnMenu),new Button("Добавить новый предмет/изменить старый",AddLesson)}});
+        e.update.Message.Chat.ChangeButtons(menu);
+
+        await Output.RequestMessageSending(e.update.Message.Chat, "Настройки", menu);
+
+    }
     public static async Task ButtonOnMenu(object sender, ForFunctionEventArgs e)
     {
         Buttons menu = new Buttons(new Button[][]{
                 new Button[] { new Button("/start", Start) },
                 new Button[] { new Button("Новый Предмет", AddLesson) , new Button("Расписание на сегодня", GetTimeTable)},
-                new Button[] { new Button("MenuTest", MenuTest) }}
+                new Button[] { new Button("Настройки", Settings) }}
             );
         e.update.Message.Chat.ChangeButtons(menu);
-        await Output.RequestMessageSending(e.update.Message.Chat, "Ты в менюшке был", menu);
+        await Output.RequestMessageSending(e.update.Message.Chat, "Меню", menu);
     }
 
 
