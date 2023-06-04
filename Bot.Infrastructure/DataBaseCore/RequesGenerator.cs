@@ -14,7 +14,7 @@ public sealed class RequestGenerator
                 ConnectionSTR = "server=localhost;user=root;database=lol;password=lfybk2000";
                 break;
             case ("JORDENN-PC"): 
-                ConnectionSTR = "server=localhost;user=root;database=lol;password=lfybk2000";
+                ConnectionSTR = "server=localhost;user=root;database=lol;password=данил2000";
                 break;
             
         }
