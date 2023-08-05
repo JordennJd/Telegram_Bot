@@ -1,31 +1,38 @@
 ﻿<Properties StartupConfiguration="{F6127389-34A1-4EEB-85E0-183CC9AAE07D}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="TestProject1/UnitTest1.cs">
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.Telegram__Bot PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.ItemProperties.TestProject1 PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.Telegram__Bot.Test PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="Bot.Infrastructure/TimeTableCore/TimeTableHandler.cs">
     <Files>
-      <File FileName="Bot.Infrastructure/TimeTableCore/TimeTableHandler.cs" />
+      <File FileName="Bot.Infrastructure/TimeTableCore/TimeTableHandler.cs" Line="18" Column="6" />
       <File FileName="Bot.Infrastructure/TimeTableCore/Lesson.cs" />
       <File FileName="Bot.Infrastructure/DataBaseCore/UserHandler.cs" />
       <File FileName="Bot.Infrastructure/DataBaseCore/LessonHandler.cs" />
       <File FileName="Bot.Domain/Entities/Button.cs" />
       <File FileName="Bot.Domain/Entities/ForFunctionEventArgs.cs" />
       <File FileName="Program.cs" />
-      <File FileName="TestProject1/UnitTest1.cs" Line="22" Column="85" />
-      <File FileName="TestProject1/Usings.cs" Line="1" Column="1" />
+      <File FileName="TestProject1/Usings.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Telegram_Bot" expanded="True" />
+          <Node name="Telegram_Bot" expanded="True">
+            <Node name="Telegram_Bot" expanded="True">
+              <Node name="Bot.Infrastructure" expanded="True">
+                <Node name="TimeTableCore" expanded="True">
+                  <Node name="TimeTableHandler.cs" selected="True" />
+                </Node>
+              </Node>
+            </Node>
+          </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.ItemProperties.TestProject1 PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Telegram__Bot.Test PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.ItemProperties.Telegram__Bot PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
