@@ -13,6 +13,9 @@ public sealed class RequestGenerator
             case ("MacBook-Air-Danil"): 
                 ConnectionSTR = "server=localhost;user=root;database=lol;password=lfybk2000";
                 break;
+            case ("JORDENN-PC"): 
+                ConnectionSTR = "server=localhost;user=root;database=lol;password=данил2000";
+                break;
             
         }
         conn= new MySqlConnection(ConnectionSTR);

@@ -3476,33 +3476,32 @@
     ]
   },
   "packageFolders": {
-    "/Users/danilalatyrev/.nuget/packages/": {}
+    "C:\\Users\\jordenn\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/TestProject1/TestProject1.csproj",
+      "projectUniqueName": "M:\\Projects\\Telegram_Bot\\TestProject1\\TestProject1.csproj",
       "projectName": "TestProject1",
-      "projectPath": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/TestProject1/TestProject1.csproj",
-      "packagesPath": "/Users/danilalatyrev/.nuget/packages/",
-      "outputPath": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/TestProject1/obj/",
+      "projectPath": "M:\\Projects\\Telegram_Bot\\TestProject1\\TestProject1.csproj",
+      "packagesPath": "C:\\Users\\jordenn\\.nuget\\packages\\",
+      "outputPath": "M:\\Projects\\Telegram_Bot\\TestProject1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/danilalatyrev/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\jordenn\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/Telegram_Bot.csproj": {
-              "projectPath": "/Users/danilalatyrev/Desktop/ForProjects/Telegram_Bot/Telegram_Bot.csproj"
+            "M:\\Projects\\Telegram_Bot\\Telegram_Bot.csproj": {
+              "projectPath": "M:\\Projects\\Telegram_Bot\\Telegram_Bot.csproj"
             }
           }
         }
@@ -3550,7 +3549,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.306/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }

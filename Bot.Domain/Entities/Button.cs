@@ -18,10 +18,10 @@ namespace Bot.Domain.Entities
             Text =text;
             functionForPushButton = function;
         }
-        
         public void PushButton(ForFunctionEventArgs e)
         {
             puchButtonEvent?.Invoke(this, e);
+
         }
     }
 
